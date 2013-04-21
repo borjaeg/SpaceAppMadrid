@@ -1,0 +1,202 @@
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renewable Energy Explorer</title>
+<link href='http://fonts.googleapis.com/css?family=Sanchez'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<!--Remote -> Local -->
+<link
+	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css"
+	rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<!--Remote -> Local -->
+
+<link rel="stylesheet" href="css/estilogeneral.css">
+
+<!-- GOOGLE EARTH -->
+<script
+	src="http://www.google.com/jsapi?key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw"
+	type="text/javascript"></script>
+<script>
+        google.load("earth", "1");
+        </script>
+<!-- MAIN JS FILE-->
+<script type="text/javascript" src="js/main.js"></script>
+
+<!-- Multilanguage support -->
+<script type="text/javascript" src="lib/string-es.js"></script>
+<script type="text/javascript" src="lib/string-en.js"></script>
+<script type="text/javascript" src="js/multilanguage.js"></script>
+
+</head>
+
+<body>
+	<div class="container" id="general">
+		<div id="encabezado" class="row">
+
+			<div class="span4" id="icono">
+
+				<h3>Energy</h3>
+				<img src="img/monigote.png"></img>
+				<h3>People</h3>
+
+
+			</div>
+
+			<div id="menu" class="span8">
+				<ul class="nav nav-pills">
+
+					<li><a href="index.html">Home</a></li>
+					<li><a href="analize.html">Analize</a></li>
+					<li class="active" style="width: 200px"><a href="how.html">How
+							does it work?</a></li>
+					<li><a href="FAQ.html">FAQ</a></li>
+					<li><a href="developer.html">Team</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<div id="cuerpo" class="row">
+			<div id="derecha" class="span12 faq">
+				<h1>How does it work?</h1>
+				<div class="answer">Energy2People allows to the user the
+					visualization of the renewable energy resources of any location in
+					the world and the evaluation of its energy potential.</div>
+				<h3>Map visualization</h3>
+				<div class="answer">
+					The user can visualize the available energy resources in the Home
+					tab under the Map option. The data can be requested in yearly,
+					monthly and daily averages that are displayed along time. <br />
+					The retrieval of the data can be done in 4 simple steps: <br />
+					<ul type="1">
+						<li>Time period selection. The possible options are:
+							<ul type="a">
+								Yearly statistics: Select the period based on years in the
+								Yearly tab
+								<br> Monthly statistics: Select the months within a
+								specific year in the Monthly tab. The selected year is defined
+								in the Yearly tab.
+								<br> Daily statistics: Select a period based on days in the
+								Daily tab.
+								<br>
+							</ul>
+						</li>
+						<li>Select the geophysical parameter for data extraction in
+							the Measure tab</li>
+						<li>Select the statistics to compute in the selected
+							aggregation period. The possible options are:
+							<ul type="a">
+								<li>Total</li>
+								<li>Average</li>
+								<li>Maximum</li>
+								<li>Minimum</li>
+							</ul>
+						</li>
+						<li>Click on calculate!</li>
+					</ul>
+				</div>
+				<h3>Graph visualization</h3>
+				<h4>Data analysis</h4>
+				<div class="answer">
+					The application allows the estimation of energy generation at a
+					given location based on the available renewable energy resources
+					and the proposed facility.<br /> The user can describe the
+					facility based on an intuitive list of parameters:<br />
+					<ul style="" start="1">
+						<li>Surface of solar panels</li>
+						<li>Number of wind turbines</li>
+						<li>Quality of the facility</li>
+					</ul>
+					The description of the facility quality is based on available
+					commercial products:<br />
+					<h5>Solar facility</h5>
+					<table border="1">
+						<tr>
+							<td></td>
+							<td>Price per m2 ($/m2)</td>
+							<td>Max Power per m2 (W/m2)</td>
+							<td>Efficiency</td>
+							<td>Installation cost ($/m2)</td>
+						</tr>
+						<tr>
+							<td>High</td>
+							<td>600</td>
+							<td>217</td>
+							<td>22.5</td>
+							<td>666</td>
+						</tr>
+						<tr>
+							<td>Medium</td>
+							<td>460</td>
+							<td>210</td>
+							<td>19.3</td>
+							<td>666</td>
+						</tr>
+						<tr>
+							<td>Low</td>
+							<td>111</td>
+							<td>152.5</td>
+							<td>15.9</td>
+							<td>666</td>
+						</tr>
+					</table>
+					<h5>Wind turbine facility</h5>
+					<table border="1">
+						<tr>
+							<td></td>
+							<td>Generated power (kW)</td>
+							<td>Installation cost ($/turbine)</td>
+						</tr>
+						<tr>
+							<td>Expensive</td>
+							<td>3000</td>
+							<td>3.300.000</td>
+						</tr>
+						<tr>
+							<td>Medium</td>
+							<td>1500</td>
+							<td>1.500.000</td>
+						</tr>
+						<tr>
+							<td>Chheap</td>
+							<td>650</td>
+							<td>460.000</td>
+						</tr>
+					</table>
+				</div>
+				<div class="answer" style="margin-top: 20px">Once the facility
+					has been described, the user selects where to place it either using
+					an specific address or by manually entering the latitude and
+					longitude coordinates.</div>
+				<div class="answer">Finally, press on calculate to get the
+					results!</div>
+				<div class="answer">
+					The provided results are:<br />
+					<ul>
+						<li>The daily average generated energy</li>
+						<li>The number of homes to be powered with that energy</li>
+						<li>The equivalent value of the generated energy</li>
+						<li>The facility cost</li>
+						<li>Time to recover the invesment</li>
+					</ul>
+				</div>
+			</div>
+			<!--  div id="derecha" class="span12 faq">
+                <h2>Here, in this short video-tutorial you can learn how the web works.</h2>
+                <div id="video" align="center">
+                    <iframe  width="640" height="360" frameborder="0" allowfullscreen="" src="http://www.youtube.com/embed/0O0gi2m_p_o?feature=player_detailpage"></iframe>
+                </div> 
+            </div>-->
+		</div>
+</body>
+</html>
+<script>
+
+</script>

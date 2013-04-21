@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Renewable Energy Explorer</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/amcharts.js"></script>
+
+	<link rel="stylesheet" href="css/estilogeneral.css">	
+
+
+<!-- GOOGLE EARTH -->
+<script
+	src="http://www.google.com/jsapi?key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw"
+	type="text/javascript"></script>
+<script>
+        google.load("earth", "1");
+        </script>
+<!-- MAIN JS FILE-->
+<script type="text/javascript" src="js/main.js"></script>
+	<script>
+	//GRAPHICS!!
+var chart;
+
+AmCharts.ready(function () {
+    // SERIAL CHART  
+    chart = new AmCharts.AmSerialChart();
+    //chart.pathToImages = "js/images/";
+    chart.dataProvider = chartData;
+    chart.categoryField = "year";
+    chart.startDuration = 1;
+
+    // AXES
+    // category
+    var categoryAxis = chart.categoryAxis;
+    categoryAxis.gridPosition = "start";
+
+    // value
+    // in case you don't want to change default settings of value axis,
+    // you don't need to create it, as one value axis is created automatically.
+    
+    // GRAPHS
+    // column graph (max)
+    var graph1 = new AmCharts.AmGraph();
+    graph1.type = "column";
+    graph1.title = "Maximum";
+    graph1.valueField = "max";
+    graph1.lineAlpha = 0;
+    graph1.fillAlphas = 1;
+    chart.addGraph(graph1);
+    
+    // column graph (min)
+    var graph2 = new AmCharts.AmGraph();
+    graph2.type = "column";
+    graph2.title = "Minimum";
+    graph2.valueField = "min";
+    graph2.lineAlpha = 0;
+    graph2.fillAlphas = 1;
+    chart.addGraph(graph2);
+
+    // line
+    var graph3 = new AmCharts.AmGraph();
+    graph3.type = "line";
+    graph3.title = "Average";
+    graph3.valueField = "avg";
+    graph3.lineThickness = 2;
+    graph3.bullet = "round";
+    chart.addGraph(graph3);
+
+    // LEGEND                
+    var legend = new AmCharts.AmLegend();
+    chart.addLegend(legend);
+
+    // WRITE
+    chart.write("chartdiv");
+});
+
+	</script>
+</head>
+
+<body>
+	<div class="container" id="general">
+		<div id="encabezado" class="row">
+
+			<div class="span4" id="icono">
+
+				<h3>Energy</h3>
+				<img src="img/monigote.png"></img>
+				<h3>People</h3>
+
+
+			</div>
+
+			<div id="menu">
+				<ul class="nav nav-pills">
+					<li class="active" style="width: 200px"><a href="#">Home</a></li>
+					<li class="dropdown" id="menu1">
+					<li><a href="analize.html">Analize</a></li>
+					<li><a href="how.html">How does it work?</a></li>
+					<li><a href="FAQ.html">FAQ</a></li>
+					<li><a href="developer.html">Team</a></li>
+			</div>
+		</div>
+		<div id="cuerpo" class="row">
+
+			<div id="izquierda" class="span4">
+
+				<h1>Meteo-BI Form</h1>
+				<div id="accordion">
+					<h3>Yearly <div id="saveYears"></div></h3>
+					<div class="">
+						<div id="yearSelection" class="">
+							<div class="">
+								<h4 style="font-size: 12px;">From</h4>
+								<select id="fromYear">
+									<option value="0">-----</option>
+								</select>
+								<h4 style="font-size: 12px;">To</h4>
+								<select id="toYear">
+									<option value="0">-----</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<h3>Monthly <div id="saveMonths"></div></h3>
+					<div class="">
+						<div id="monthSelection" class="">
+							<div class="">
+								<h4>From</h4>
+								<select id="fromMonth">
+									<option value="0">-----</option>
+								</select>
+							</div>
+							<div class="">
+								<h4>To</h4>
+								<select id="toMonth">
+									<option value="0">-----</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<h3>Daily <div id="saveDays"></div></h3>
+					<div class="">
+						<div id="daySelection" class="">
+							<h4>From</h4>
+							<input type="text" id="datepickerFrom" />
+							<h4>To</h4>
+							<input type="text" id="datepickerTo" />
+						</div>
+					</div>
+					<h3>Coordinates</h3>
+					<div class="">
+						<div id="coordinateSelection" class="">
+							<h4>Choose a latitude</h4>
+							<input type="number" step="1" id="latitude">
+							<h4>Choose a longitude</h4>
+							<input type="number" id="longitude">
+
+						</div>
+					</div>
+
+					<h3>Measure <div id="saveMeasure"></div></h3>
+					<div class="">
+						<div id="measureSelection" class="">
+							<h4>Select a measure</h4>
+							<select id="measureSelect">
+
+								<option value="1">Horizontal Solar Radiation</option>
+								<option value="2">Dew Frost</option>
+								<option value="3">Relative Humidity</option>
+								<option value="4">Wind Speed</option>
+								<option value="5">Precipiation</option>
+								<option value="6">Temperature</option>
+							</select>
+						</div>
+					</div>
+
+					<h3>Aggregator <div id="saveAggreg"></div></h3>
+					<div id="slicer" class="">
+						<span id="choice">
+							<div id="row">
+								<input type="radio" id="totalRadio" name="repeat"
+									checked="checked" value="1" /><label for="totalRadio">Tot</label>
+								<input type="radio" id="avgRadio" name="repeat" value="2" /><label
+									for="avgRadio">Avg</label> <input type="radio" id="maxRadio"
+									name="repeat" value="3" /><label for="maxRadio">Max</label> <input
+									type="radio" id="minRadio" name="repeat" value="4" /><label
+									for="minRadio">Min</label>
+							</div>
+						</span>
+					</div>
+				</div>
+				<br>
+				<p>
+					<a id="botonMapa" class="boton1">Calculate</a>
+					<a id="botonGraficas" class="boton1" style="display:none">Draw</a>
+				<br><img src="img/leyenda.png" style="margin: 20px"></img>
+				</p>
+
+
+			</div>
+
+			
+			<div id="derecha" class="span8">
+                <h1>Renewable Energy Explorer</h1>
+                <br>
+                <a id="cambiaMapa" class="tab active" href="mapa">Map</a>
+                <a id="cambiaGraficas" class="tab" href="graficas">Graphs</a>
+               
+                <div id="mapa" class="contenido" ><div id = "map3d" style="width: 700px; height: 550px;"></div> </div>
+                
+                <div id="graficas" class="contenido" style="display: none">
+                   <div id="chartdiv" style="width: 700px; height: 550px; background-color: white;"></div>
+                </div>
+                
+            </div>
+			<div id="loading">
+				<img src="img/loading.gif">
+			</div>
+</body>
+</html>
+<script>
+
+</script>
+​

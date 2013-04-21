@@ -1,0 +1,18 @@
+DEPENDENCIAS
+-------------------------------------
+  - Tomcat 1.6
+  - Postgresql 9.1
+  - Maven
+
+  - JQuery 1.7.1
+  - Amcharts 
+  - Bootstrap 2.3.1
+
+  - JUnit 4.11
+  - Java Servlet 2.4
+  - JavaAPIforKml 2.2.0-SNAPSHOT
+  - log4j 1.2.17
+  - olap4j 1.0.1.539
+  - mondrian 3.3.0.14701
+  - eigenbase 1.1.0.10924
+  - Json-simple 1.1

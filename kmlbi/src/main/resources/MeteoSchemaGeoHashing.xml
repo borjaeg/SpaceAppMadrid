@@ -1,0 +1,89 @@
+<Schema name="MeteoSchema">
+  <Cube name="MeteoCube" visible="true" cache="true" enabled="true">
+    <Table name="meteofact" schema="public">
+    </Table>
+    <Dimension type="TimeDimension" visible="true" foreignKey="idtime" highCardinality="false" name="Time">
+      <Hierarchy name="Time Hierarchy" visible="true" hasAll="false" primaryKey="idtime">
+        <Table name="time_dimension" schema="public">
+        </Table>
+        <Level name="year" visible="true" column="anyo" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="month" visible="true" column="mes" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+        <Level name="day" visible="true" column="dia" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="idlocation" highCardinality="false" name="Latitud">
+      <Hierarchy name="Latitude hierarchy" visible="true" hasAll="true" allMemberName="Latitudes" primaryKey="idlocation">
+        <Table name="location_dimension" schema="public">
+        </Table>
+        <Level name="Latitude level" visible="true" column="latitude" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="idlocation" highCardinality="false" name="Longitude">
+      <Hierarchy name="Longitude hierarchy" visible="true" hasAll="true" allMemberName="Longitudes" primaryKey="idlocation">
+        <Table name="location_dimension" schema="public">
+        </Table>
+        <Level name="Longitude level" visible="true" column="longitude" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Solar_Radiation_Total" column="horizonalsolarradiation" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Solar_Radiation_Average" column="horizonalsolarradiation" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Solar_Radiation_Min" column="horizonalsolarradiation" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Solar_Radiation_Max" column="horizonalsolarradiation" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <Measure name="Dew_Frost_Total" column="dewfrost" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Dew_Frost_Average" column="dewfrost" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Dew_Frost_Min" column="dewfrost" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Dew_Frost_Max" column="dewfrost" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <Measure name="Relative_Humidity_Total" column="relativehumidity" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Relative_Humidity_Average" column="relativehumidity" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Relative_Humidity_Min" column="relativehumidity" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Relative_Humidity_Max" column="relativehumidity" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <Measure name="Temperature_Total" column="temperature" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Temperature_Average" column="temperature" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Temperature_Min" column="temperature" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Temperature_Max" column="temperature" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <Measure name="Wind_Speed_Total" column="windspeed" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Wind_Speed_Average" column="windspeed" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Wind_Speed_Min" column="windspeed" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Wind_Speed_Max" column="windspeed" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <Measure name="Precipitation_Total" column="precipitation" datatype="Numeric" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Precipitation_Average" column="precipitation" datatype="Numeric" aggregator="avg" visible="true">
+    </Measure>
+    <Measure name="Precipitation_Min" column="precipitation" datatype="Numeric" aggregator="min" visible="true">
+    </Measure>
+    <Measure name="Precipitation_Max" column="precipitation" datatype="Numeric" aggregator="max" visible="true">
+    </Measure>
+    <CalculatedMember name="RelationSolarWindAvg" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[[Measures].[Solar_Radiation_Average] - [Measures].[Wind_Speed_Average]]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+  </Cube>
+</Schema>

@@ -1,0 +1,116 @@
+<html>
+  <head>
+
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Renewable Energy Explorer</title>
+        <link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
+        
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" /> <!--Remote -> Local -->
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script> <!--Remote -> Local -->
+
+        <link rel="stylesheet" href="css/estilogeneral.css" >
+        <!-- MAIN JS FILE-->
+
+                <!-- Multilanguage support -->
+        <script type="text/javascript" src="lib/string-es.js"></script>
+        <script type="text/javascript" src="lib/string-en.js"></script> 
+        <script type="text/javascript" src="js/multilanguage.js"></script>
+        
+
+  </head>
+  
+  <body >
+    <div class="container" id = "general">
+        <div id="encabezado" class="row">
+
+             <div class= "span4" id="icono">
+                
+                <h3>Energy</h3><img src="img/monigote.png"></img><h3>People</h3>
+                
+                
+            </div>
+
+            <div id="menu" class="span8">
+                <ul class="nav nav-pills">              
+                <li><a href="index.html">Home</a></li>
+                <li><a href="analize.html">Analize</a></li>             
+                <li><a href="how.html">How does it work?</a></li>
+                <li class="active" style="width:200px"><a href="FAQ.html">FAQ</a></li>
+                <li><a href="developer.html">Team</a></li>
+            </div>
+        </div>
+        <div id="cuerpo" class="row">
+                <div id="derecha" class="span12 faq">
+                    <h1>Renewable Energy FAQ</h1>
+                    <h2> What is the purpose of Energy2People?</h2>
+                        <div class="answer">
+                           The aim of this website is to visualize several geophysical parameters collected by NASA that have a direct impact on renewable energies, and to explore suitable areas for the installation of power generation facilities.
+                        </div>
+
+                    <h2>Which locations are available?</h2>                   
+                         <div class="answer">
+                            The data is limited to the Iberian Peninsula and have a spatial resolution of 1 degree (approximately 110 km).  The data source has a worldwide coverage and additional countries may be added upon request.
+                         </div>
+
+                    <h2>Which source data is available?</h2>
+                        <div class="answer">
+                          The collected data to be displayed on the map are: horizontal solar radiation, dew frost, relative humidity, wind speed, precipitation and temperature.  The unitary temporal resolution is 1 day and you can aggregate data to produce monthly and yearly series as well using the input form.
+                        </div>
+             
+                    <h2>Why can&acute;t I see data in some cases?</h2>
+                        <div class="answer">
+                            Not all the data are available for the complete temporal range. The following table shows the range for each geophysical parameter.
+                        </div>
+
+                    <br>
+ <table style="margin: 0 auto; color: #FFF;" >
+	<tr>
+		<td>Horizontal solar radiation</td>
+		<td>Jul 1983 - present</td>
+	</tr>
+<tr>
+		<td>Dew frost</td>
+		<td>Jan 1983 - present</td>
+	</tr>
+	<tr>
+		<td>Wind speed</td>
+		<td>Jan 1983 - present</td>
+	</tr>
+<tr>
+		<td>Precipitation</td>
+		<td>Jan 1997 - Aug 2009</td>
+	</tr>
+	<tr>
+		<td>Relative humidity</td>
+		<td>Jan 1983 - present</td>
+	</tr>
+<tr>
+		<td>Temperature</td>
+		<td>Jan 1983 - present</td>
+	</tr>
+</table>
+
+<br>
+
+                    <h2>Why can&acute;t I see data in some cases?</h2>
+                    
+                        <div class="answer">
+                            Based on the source data a simple calculation is done to estimate the solar and wind energy at a given location proposed by the user.  To achieve this the user gives the total surface of solar panels, the number of wind turbines and the type of facility to be installed.
+                            With these inputs the application calculates the energy generated per day, the number of homes that can be powered with this energy, the monetary value, the facilities cost and the time to recover the investment.
+                        </div>
+
+
+
+
+
+
+
+
+
+</div>
+  </body>
+</html>
