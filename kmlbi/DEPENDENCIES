@@ -3,9 +3,8 @@ DEPENDENCIES
 
 ### Production environment
 
-  - Tomcat 1.6
-  - Postgresql 9.1
-  - Maven
+  - Apache Tomcat 1.6
+  - PostgreSQL 9.1
 
 
 ### FrontEnd dependencies
@@ -17,6 +16,7 @@ DEPENDENCIES
 
 ### BackEnd dependencies
 
+  - Apache Maven 3.0.5
   - JUnit 4.11
   - Java Servlet 2.4
   - JavaAPIforKml 2.2.0-SNAPSHOT

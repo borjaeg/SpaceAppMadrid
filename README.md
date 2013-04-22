@@ -10,25 +10,25 @@ Dependencies
 ------------
 
 ### Production environment
- * Tomcat 1.6
- * Postgresql 9.1
- * Maven
+ * [Apache Tomcat 1.6](http://tomcat.apache.org/)
+ * [PostgreSQL 9.1](http://www.postgresql.org/)
 
 ### FrontEnd dependencies
- * JQuery 1.7.1
- * Bootstrap 2.3.1
- * Amcharts 2.10.0
+ * [JQuery 1.7.1](http://jquery.com/)
+ * [Bootstrap 2.3.1](http://twitter.github.io/bootstrap/)
+ * [Amcharts 2.10.0](http://www.amcharts.com/)
 
 ### BackEnd dependencies
- * JUnit 4.11
- * Java Servlet 2.4
- * JavaAPIforKml 2.2.0-SNAPSHOT
- * log4j 1.2.17
- * olap4j 1.0.1.539
- * mondrian 3.3.0.14701
- * eigenbase 1.1.0.10924
- * Json-simple 1.1
- * htmlunit
+ * [Apache Maven 3.0.5](http://maven.apache.org/)
+ * [JUnit 4.11](http://junit.org/)
+ * [Apache Java Servlet 2.4](http://tomcat.apache.org/)
+ * [JavaAPIforKml 2.2.0](https://code.google.com/p/javaapiforkml/)
+ * [Apache log4j 1.2.17](http://logging.apache.org/log4j/1.2/)
+ * [olap4j 1.0.1.539](http://www.olap4j.org/)
+ * [mondrian 3.3.0.14701](http://mondrian.pentaho.com/)
+ * [eigenbase 1.1.0.10924](http://www.eigenbase.org/)
+ * [Json-simple 1.1](https://code.google.com/p/json-simple/)
+ * [htmlunit 2.12](http://htmlunit.sourceforge.net/)
  * ch.hsr.geohash
 
 
@@ -36,7 +36,7 @@ Resources
 ---------
  * [Github MAIN Repo](https://github.com/borja3790/SpaceAppMadrid)
  * [GitHub Repo FrontEnd Code](https://github.com/rafinskipg/Energy2PeopleFront)
- * [FrontEnd Test Page] (http://appsets.com/index.html)
+ * [FrontEnd Test Page](http://appsets.com/index.html)
 
 
 Project Information
