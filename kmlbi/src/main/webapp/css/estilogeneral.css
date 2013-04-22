@@ -21,7 +21,7 @@
 body{
     line-height: 2.5em;
     background: #09c519 url('../img/grass1.jpg');
-    font-family: 'Sanchez', serif;
+    font-family: 'Open Sans', sans-serif;
     padding: 5px;
     -moz-border-radius: 10px 10px / 10px 10px;
     border-radius: 10px 10px / 10px 10px;
@@ -120,7 +120,7 @@ float: left;
 #cuerpo h1 {
 text-align: center;
 color:#FFF;
-text-shadow: 0.1em 0.1em 0.05em #333;
+text-shadow: 2px 2px 4px rgb(75, 74, 74);
 
     
 }
@@ -136,7 +136,7 @@ text-shadow: 0.1em 0.1em 0.05em #333;
 
 #derecha{
 color: #FFF;
- text-shadow: 0.1em 0.1em 0.05em #333;
+text-shadow: 0px 1px 1px rgb(75, 74, 74);
   margin-bottom: 20px;
   
 }
@@ -172,7 +172,7 @@ min-height: 300px;
     
 font-size: 25px;  
 color: #FFF;
-text-shadow: 0.1em 0.1em 0.05em #333;
+text-shadow: 2px 2px 4px rgb(75, 74, 74);
 
 }
 
@@ -326,7 +326,7 @@ color: white;
  cursor: pointer;
 }
 #resultado{
-    height: 100%;
+    
     background-color: white;
     color: black;
 
@@ -345,8 +345,13 @@ color: white;
 #resultado .row h3{
    margin-left: 30px;
 }
+#resultado .result{
+margin-top: 20px;
+margin-bottom: 10px;
+}
 #resultado .result h4{
     font-weight: normal;
+   
 }
 #resultado span{
     padding-left: 30px;
