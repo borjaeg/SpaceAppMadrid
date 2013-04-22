@@ -54,5 +54,5 @@ Project Information
  * Fernando Martin
  * Enrique Perez Alonso
  * Pau Contreras de Luna
- * Daniel Sanchez Seijo 
- * David Portilla Abellan 
+ * [Daniel Sanchez Seijo](https://github.com/Daniseijo)
+ * [David Portilla Abellan](https://github.com/davidportilla)
