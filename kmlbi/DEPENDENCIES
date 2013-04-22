@@ -1,12 +1,21 @@
 DEPENDENCIES
 -------------------------------------
+
+### Production environment
+
   - Tomcat 1.6
   - Postgresql 9.1
   - Maven
 
+
+### FrontEnd dependencies
+
   - JQuery 1.7.1
-  - Amcharts 
   - Bootstrap 2.3.1
+  - Amcharts 2.10.0
+
+
+### BackEnd dependencies
 
   - JUnit 4.11
   - Java Servlet 2.4
