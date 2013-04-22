@@ -6,6 +6,30 @@ This project is solving the Renewable Energy Explorer challenge for the 2013 NAS
 Interactive Data visualization client for the selection of wealthy renewable resources areas. The application allows to the user the estimation of potential amount of energy in a specific location.
 
 
+Renewable Energy FAQ
+--------------------
+### What is the purpose of Energy2People?
+The aim of this website is to visualize several geophysical parameters collected by NASA that have a direct impact on renewable energies, and to explore suitable areas for the installation of power generation facilities.
+
+### Which locations are available?
+The data is limited to the Iberian Peninsula and have a spatial resolution of 1 degree (approximately 110 km). The data source has a worldwide coverage and additional countries may be added upon request.
+
+### Which source data is available?
+The collected data to be displayed on the map are: horizontal solar radiation, dew frost, relative humidity, wind speed, precipitation and temperature. The unitary temporal resolution is 1 day and you can aggregate data to produce monthly and yearly series as well using the input form.
+
+### Why can´t I see data in some cases?
+Not all the data are available for the complete temporal range. The following table shows the range for each geophysical parameter.
+ * Horizontal solar radiation: Jul 1983 - present
+ * Dew frost: Jan 1983 - present
+ * Wind speed: Jan 1983 - present
+ * Precipitation: Jan 1997 - Aug 2009
+ * Relative humidity: Jan 1983 - present
+ * Temperature: Jan 1983 - present
+
+### Why can´t I see data in some cases?
+Based on the source data a simple calculation is done to estimate the solar and wind energy at a given location proposed by the user. To achieve this the user gives the total surface of solar panels, the number of wind turbines and the type of facility to be installed. With these inputs the application calculates the energy generated per day, the number of homes that can be powered with this energy, the monetary value, the facilities cost and the time to recover the investment.
+
+
 Dependencies
 ------------
 
