@@ -19,12 +19,9 @@
 
 
 body{
-
-background: #09c519 url('../img/grass1.jpg');
-
+    line-height: 2.5em;
+    background: #09c519 url('../img/grass1.jpg');
     font-family: 'Sanchez', serif;
-
-
     padding: 5px;
     -moz-border-radius: 10px 10px / 10px 10px;
     border-radius: 10px 10px / 10px 10px;
@@ -187,19 +184,31 @@ color: #000;
 }
 
 .boton1{
-
-font-size: 25px;  
-color: #FFF;
-text-shadow: 0.1em 0.1em 0.05em #333;
-background-color: rgba(96, 177, 76, 1);
-padding: 10px;
- -moz-border-radius: 10px 10px / 10px 10px;
+    -webkit-transition: background-color .15s linear;
+    -moz-transition: background-color .15s linear;
+    -o-transition: background-color .15s linear;
+    transition: background-color .15s linear;
+    font-size: 25px;  
+    color: #FFF;
+    text-shadow: 0.1em 0.1em 0.05em #333;
+    background-color: rgba(96, 177, 76, 1);
+    padding: 10px;
+    -moz-border-radius: 10px 10px / 10px 10px;
     border-radius: 10px 10px / 10px 10px;
     font-size-adjust: inherit;
- 
+    cursor:pointer;
+    margin-top:40px;
 }
-
-
+.boton1:hover{
+    text-decoration: none; 
+    color: white;
+     background-color: rgba(197, 206, 195, 1);
+     cursor:pointer;
+}
+.leyenda{
+width: 100%;
+margin-top: 44px;
+}
 
 #footer
 {
@@ -238,9 +247,14 @@ margin-bottom: 20px;
     color:white;
 }
 
+.ui-state-active{
+    background: rgba(96, 177, 76, 1) !important;
+    color:white;
+}
+
 /** Accordion **/
 #accordion{
-    margin-bottom: 25px;
+    margin-bottom: 50px;
 }
 /**Scroll bar **/
 
@@ -266,7 +280,31 @@ box-shadow: 0 0 2px #ccc;
 .faq h1{
 border-bottom: 1px solid rgba(172, 162, 162, 0.6);
 }
+/* how does it work */
+.faq table{
+    width: 98%;
+    background-color: white;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-align: center;
+    text-shadow: none;
+}
+.faq table th{
+    border-color: grey;
+    padding: 7px;
+    font-weight: bold;
+}
+.faq table tr{
+    border-color: grey;
+}
 
+.faq table td{
+    border-radius: 5px;
+border-color: grey;
+padding: 7px;
+
+}
 /** Team **/
 .team li{
 line-height: 20px;
@@ -285,7 +323,7 @@ border-radius: 10px;
 padding-top: 10px;
 padding-left: 26px;
 color: white;
- cursor: hand;
+ cursor: pointer;
 }
 #resultado{
     height: 100%;
