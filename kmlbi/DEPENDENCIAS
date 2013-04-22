@@ -16,3 +16,5 @@ DEPENDENCIAS
   - mondrian 3.3.0.14701
   - eigenbase 1.1.0.10924
   - Json-simple 1.1
+  - htmlunit
+  - ch.hsr.geohash

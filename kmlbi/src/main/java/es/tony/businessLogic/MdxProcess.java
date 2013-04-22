@@ -95,10 +95,10 @@ public class MdxProcess implements OlapProcess {
 						this.minValue = Float.valueOf(cell.getValue()
 								.toString());
 
-					if (request.getAnyoFrom() != 0) { // agregación año,
-														// intervalo año a año,
+					if (request.getAnyoFrom() != 0) { // agregaci��n a��o,
+														// intervalo a��o a a��o,
 						// o meses...
-						if (request.getAnyoTo() != 0) { // intervarlo año a año
+						if (request.getAnyoTo() != 0) { // intervarlo a��o a a��o
 														// [year]:[year]
 							// return generate(0);
 							olapData.setFecha(rowPos.getMembers().get(1)
