@@ -40,7 +40,7 @@ window.addBindings = function(){
     });
     
     
-    $("#getAnalizeButton").click(function() {
+    $("#getAnalyzeButton").click(function() {
     	// Llamada AJAX para mostrar los resultados de los calculos
         apagar();
         var request = {
