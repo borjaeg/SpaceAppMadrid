@@ -322,7 +322,7 @@ border-bottom: 1px solid rgba(172, 162, 162, 0.6);
 } 
 /* how does it work */
  .answer{
-width: 81%;
+/*width: 81%;*/
 margin-left: 4%;
 }
 .wrapper-contenido table{
