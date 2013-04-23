@@ -1,7 +1,6 @@
 #encabezado{
-    
     color: fff;
-    background-color: #3dc9f7;
+    background-color: #77C5B5;
     padding: 5px;
     
     -moz-border-radius: 10px 10px / 10px 10px;
@@ -17,7 +16,6 @@
 }
 
 
-
 body{
     line-height: 2.5em;
     background: #09c519 url('../img/grass1.jpg');
@@ -26,14 +24,7 @@ body{
     -moz-border-radius: 10px 10px / 10px 10px;
     border-radius: 10px 10px / 10px 10px;
     font-size-adjust: inherit;
-    
 }
-
-
-#general{
-
-}
-
 
 
 #icono{  
@@ -50,12 +41,12 @@ body{
 #icono h3 {
     margin-top: 40px;
     float: left;
-
-
 }
+
+
 #icono img {
     margin-top: 5px;
-float: left;
+    float: left;
 }
 
 
@@ -63,7 +54,6 @@ float: left;
     color:#FFF;
     text-shadow: 0.1em 0.1em 0.05em #333;
     background-color: rgba(96, 177, 76, 1);
-    
 }
 
 #logo h3 {
@@ -79,32 +69,31 @@ float: left;
 
 
 #menu{
-    
     margin-top: 60px;
     float:right;
      -moz-border-radius: 10px 10px / 10px 10px;
     border-radius: 10px 10px / 10px 10px;
     font-size-adjust: inherit;
+    text-shadow: 0px 0px 1px #998686;
 }
+
+
 #menu ul{
     margin: 0;  
     float: right;
 }
+
+
 #menu ul li a{
-    
      -webkit-transition: background-color .25s linear;
      -moz-transition: background-color .25s linear;
        -o-transition: background-color .25s linear;
           transition: background-color .25s linear;
 }
-#menu ul li a:hover{
-
-}
 
 
 #cuerpo{
- 
-    background-color: #3dc9f7;
+    background-color: #77C5B5;
     -moz-border-radius: 10px 10px / 10px 10px;
     border-radius: 10px 10px / 10px 10px;
     font-size-adjust: inherit;
@@ -113,16 +102,12 @@ float: left;
     box-shadow:6px 8px 28px 6px rgba(0, 0, 0, 0.65);
     -webkit-box-shadow: 6px 8px 28px 6px rgba(0, 0, 0, 0.65);
     -moz-box-shadow:6px 8px 28px 6px rgba(0, 0, 0, 0.65);
-    
-
 }
 
 #cuerpo h1 {
-text-align: center;
-color:#FFF;
-text-shadow: 2px 2px 4px rgb(75, 74, 74);
-
-    
+    text-align: center;
+    color:#FFF;
+    text-shadow: 2px 2px 4px rgb(75, 74, 74);
 }
 
 #cuerpo h2 {
@@ -132,40 +117,90 @@ text-shadow: 2px 2px 4px rgb(75, 74, 74);
 }
 
 
-
-
 #derecha{
-color: #FFF;
-text-shadow: 0px 1px 1px rgb(75, 74, 74);
-  margin-bottom: 20px;
-  
+    color: #FFF;
+    text-shadow: 0px 1px 1px rgb(75, 74, 74);
+    margin-bottom: 20px;
 }
+
 
 #derecha .persona {
- display: block;
- color: #FFF;
-
+    display: inline-block;
+    vertical-align: bottom;
+    color: #FFF;
+    margin-bottom: 4px;
 }
-.persona img{
+
+#derecha .persona img {
+    display: block;
     width: 75px;
     height: 75px;
+    margin-bottom: 4px;
 }
+
+
+#derecha .persona .nombre,
+#derecha .persona .mail,
+#derecha .persona .social {
+    display: block;
+    width: 260px;
+}
+
+#derecha .persona .social a {
+    display: inline-block;
+    margin-right: 3px;
+    opacity: 0.3;
+    transition: opacity .4s;
+
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";  
+
+    /* others */
+    -webkit-transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    -o-transition: opacity .4s;
+    -ms-transition: opacity .4s;
+}
+
+#derecha .persona .social a:hover {
+    opacity: 1;
+
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; 
+}
+
+#derecha .persona .social a img {
+    width: 20px;
+    height: 20px;
+}
+
+
+#derecha .persona .nombre {
+    color: #F76A3B;
+}
+
+
+#derecha .persona .mail,
+#derecha .persona .social {
+    margin-left: 4px;
+}
+
+
+#derecha .persona .mail,
+#derecha .persona .social,
+#derecha .persona .social a {
+    color: #AAA;
+    text-shadow: 0px 0px 1px #888686;
+}
+
 #derecha ol {
 -moz-column-count: 2;
   -webkit-column-count: 2;
   column-count: 2;
 }
 
-.persona {
-  vertical-align: bottom;
-}
-
-#izquierda
-{
-
-min-height: 300px;
-
-
+#izquierda {
+    min-height: 300px;
 }
 
 #izquierda h1{
@@ -210,17 +245,9 @@ width: 100%;
 margin-top: 44px;
 }
 
-#footer
-{
-
-}
-
-
 
 #video {
-    
-
-margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #map3d{
@@ -229,8 +256,7 @@ margin-bottom: 20px;
 /* Tabs*/
 .tab{
     height: 50px;
-    
-    background-color: rgba(197, 206, 195, 1);
+    background-color: #A6B3A2;
     text-decoration: none;
     padding: 10px;
     border-radius: 5px;
@@ -276,11 +302,22 @@ transition: all .3s ease-out;
 -webkit-box-shadow: 0 0 2px #ccc;
 box-shadow: 0 0 2px #ccc;
 }
+
+#contenido {
+    background-color: white;
+    padding: 10px 30px 20px 30px;
+    margin: 5px 20px;
+    color: #666;
+    text-shadow: 0px 0px 1px rgb(75, 74, 74);
+    -moz-border-radius: 10px 10px / 10px 10px;
+    border-radius: 10px 10px / 10px 10px;
+}
+
 /** FAQ PAGE **/
-.faq h1{
+.wrapper-contenido h1{
 border-bottom: 1px solid rgba(172, 162, 162, 0.6);
 }
-#uerpo .faq h2{
+#cuerpo .wrapper-contenido h2{
     text-align: left;
 } 
 /* how does it work */
@@ -288,7 +325,9 @@ border-bottom: 1px solid rgba(172, 162, 162, 0.6);
 width: 81%;
 margin-left: 4%;
 }
-.faq table{
+.wrapper-contenido table{
+    color: #666;
+    text-shadow: 0px 0px 1px rgb(75, 74, 74);
     width: 98%;
     background-color: white;
     border-radius: 5px;
@@ -297,16 +336,16 @@ margin-left: 4%;
     text-align: center;
     text-shadow: none;
 }
-.faq table th{
+.wrapper-contenido table th{
     border-color: grey;
     padding: 7px;
     font-weight: bold;
 }
-.faq table tr{
+.wrapper-contenido table tr{
     border-color: grey;
 }
 
-.faq table td{
+.wrapper-contenido table td{
     border-radius: 5px;
 border-color: grey;
 padding: 7px;
@@ -398,6 +437,10 @@ margin-bottom: 10px;
     h2{
         font-size: 17px;
     }
+
+    #contenido {
+        margin: 0;
+    }
 }
 
 /*  landscape  */
@@ -418,4 +461,5 @@ form input[type='number']{
 }
 input{
         height: 30px !important;
+
 

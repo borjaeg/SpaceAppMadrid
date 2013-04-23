@@ -74,8 +74,8 @@ Project Information
  * [Alberto Alcolea Ursua](https://github.com/albertoalcolea)
  * [Borja Espejo Garcia](https://github.com/borja3790)
  * [Rafael Pedrola](https://github.com/rafinskipg)
- * Albert Zurita
- * Fernando Martin
+ * [Albert Zurita](https://github.com/albertzurita)
+ * [Fernando Martin](https://github.com/fmartinp)
  * Enrique Perez Alonso
  * Pau Contreras de Luna
  * [Daniel Sanchez Seijo](https://github.com/Daniseijo)
