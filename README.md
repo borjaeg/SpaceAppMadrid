@@ -38,6 +38,7 @@ Dependencies
  * [PostgreSQL 9.1](http://www.postgresql.org/)
 
 ### FrontEnd dependencies
+ * [Google Earth API](https://developers.google.com/earth/)
  * [JQuery 1.7.1](http://jquery.com/)
  * [Bootstrap 2.3.1](http://twitter.github.io/bootstrap/)
  * [Amcharts 2.10.0](http://www.amcharts.com/)
