@@ -26,7 +26,7 @@ Not all the data are available for the complete temporal range. The following ta
  * Relative humidity: Jan 1983 - present
  * Temperature: Jan 1983 - present
 
-### Why can´t I see data in some cases?
+### Which energy parameters can I obtain?
 Based on the source data a simple calculation is done to estimate the solar and wind energy at a given location proposed by the user. To achieve this the user gives the total surface of solar panels, the number of wind turbines and the type of facility to be installed. With these inputs the application calculates the energy generated per day, the number of homes that can be powered with this energy, the monetary value, the facilities cost and the time to recover the investment.
 
 
