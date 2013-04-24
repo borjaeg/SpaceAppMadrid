@@ -8,3 +8,7 @@ kmlbi/target
 kmlbi/.classpath
 kmlbi/.project
 kmlbi/.settings
+
+# Tomcat & auxiliary scripts
+kmlbi/auto.sh
+kmlbi/req.sh
