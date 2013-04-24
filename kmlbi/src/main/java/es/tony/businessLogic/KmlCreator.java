@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
+
 import de.micromata.opengis.kml.v_2_2_0.AltitudeMode;
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
@@ -48,7 +50,6 @@ public class KmlCreator {
 			units = "C (degrees)";
 		}
 
-		
 		for (int i = 0; i < olapDataList.size(); i++) {
 			document.createAndAddStyle()
 					.withId("examplePolyStyle" + i)
@@ -57,13 +58,13 @@ public class KmlCreator {
 					.withColor(
 							sunRadiationToColor(olapDataList.get(i)
 									.getSunRadiationAvg()));
-			
+
 			int decimal = String.valueOf(
-					olapDataList.get(i)
-					.getSunRadiationAvg()).indexOf('.');
-			
-			String formattedData = String.valueOf(olapDataList.get(i)
-					.getSunRadiationAvg()).substring(0,decimal+2);
+					olapDataList.get(i).getSunRadiationAvg()).indexOf('.');
+
+			String formattedData = String.valueOf(
+					olapDataList.get(i).getSunRadiationAvg()).substring(0,
+					decimal + 2);
 
 			TimeSpan ts = new TimeSpan().withBegin(
 					olapDataList.get(i).getFecha()).withEnd(
@@ -76,12 +77,9 @@ public class KmlCreator {
 									+ olapDataList.get(i).getLatitude()
 									+ "<br>Longitude: "
 									+ olapDataList.get(i).getLongitude()
-									+ "<br>"
-									+ "Value: "
-									+ formattedData
-									+ "<br>Units: "
-									+ units
-									+ "<br> <a href = \"analize.html\">Energy!!</a>")
+									+ "<br>" + "Value: " + formattedData
+									+ "<br>Units: " + units + "<br> "
+									+ "<a href = \"analize.html\">Energy2Money!!</a>")
 					.withStyleUrl("#examplePolyStyle" + i)
 					.withTimePrimitive(ts);
 			Polygon polygon = placemark.createAndSetPolygon().withExtrude(true)
@@ -157,27 +155,37 @@ public class KmlCreator {
 			color += "6ee094";
 		else if (solarRadiation >= valores[7] && solarRadiation < valores[8])
 			color += "9ce6b5";
-		else if (solarRadiation >= valores[9] && solarRadiation < valores[10])
+		else if (solarRadiation >= valores[8] && solarRadiation < valores[9])
 			color += "72e8c1";
-		else if (solarRadiation >= valores[11] && solarRadiation < valores[12])
+		else if (solarRadiation >= valores[9] && solarRadiation < valores[10])
 			color += "2df2d6";
-		else if (solarRadiation >= valores[12] && solarRadiation < valores[13])
+		else if (solarRadiation >= valores[10] && solarRadiation < valores[11])
 			color += "9af5f3";
-		else if (solarRadiation >= valores[13] && solarRadiation < valores[14])
+		else if (solarRadiation >= valores[11] && solarRadiation < valores[12])
 			color += "68F2F0";
-		else if (solarRadiation >= valores[14] && solarRadiation < valores[15])
+		else if (solarRadiation >= valores[12] && solarRadiation < valores[13])
 			color += "63D8F2";
-		else if (solarRadiation >= valores[15] && solarRadiation < valores[16])
+		else if (solarRadiation >= valores[13] && solarRadiation < valores[14])
 			color += "6db4f7";
-		else if (solarRadiation >= valores[16] && solarRadiation < valores[17])
+		else if (solarRadiation >= valores[14] && solarRadiation < valores[15])
 			color += "3a7bf2";
-		else if (solarRadiation >= valores[17] && solarRadiation < valores[18])
+		else if (solarRadiation >= valores[15] && solarRadiation < valores[16])
 			color += "60e6e6";
-		else if (solarRadiation >= valores[18]
+		else if (solarRadiation >= valores[16]
 				&& solarRadiation < MdxProcess.maxValue)
 			color += "3042e6";
-		else
+		else {
 			color += "0b1999";
+			log.error("");
+			log.error("");
+			log.error("");
+			log.error("");
+			log.error("");
+			log.error("");
+			log.error("");
+			log.error("");
+			log.error("RADIACION SOLAR ERRONEA: " + solarRadiation);
+		}
 
 		return color;
 	}
