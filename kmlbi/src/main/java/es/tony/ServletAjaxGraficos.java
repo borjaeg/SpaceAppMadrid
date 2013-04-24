@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
-import es.tony.persistence.AggregateSolarRadiationVO;
+import es.tony.persistence.AggregateResultsVO;
 import es.tony.persistence.ConnectionManager;
 import es.tony.persistence.JSON_converter;
 import es.tony.persistence.MeteofactDAO;
+import es.tony.persistence.TypeMeasure;
 
 
 public class ServletAjaxGraficos extends HttpServlet {
@@ -34,10 +35,11 @@ public class ServletAjaxGraficos extends HttpServlet {
 	
     public void doPost(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {	
+    	String strMeasure	= request.getParameter("measure");
     	String strYearBegin	= request.getParameter("yearBegin");
         String strYearEnd	= request.getParameter("yearEnd");
         
-        int yearBegin, yearEnd;
+        int measure, yearBegin, yearEnd;
         
         // Comprobamos los datos
         Calendar calendar = Calendar.getInstance();
@@ -47,21 +49,54 @@ public class ServletAjaxGraficos extends HttpServlet {
         		strYearEnd != null && strYearEnd != "" &&
         		(yearBegin = isNumeric(strYearBegin)) >= MIN_YEAR &&
         		(yearEnd = isNumeric(strYearEnd)) <= year_now &&
-        		yearEnd >= yearBegin) 
+        		yearEnd >= yearBegin &&
+        		strMeasure != null && strMeasure != "" &&
+        		(measure = isNumeric(strMeasure)) != -1 &&
+        		measure >=1 && measure <=6) 
         {
         	// Recoge los datos de la BD en una lista
         	Connection connection;
     		try {
-    			connection = ConnectionManager.getConnection();
-    			List<AggregateSolarRadiationVO> list = 
-    					MeteofactDAO.getDataGraphics(connection, yearBegin, yearEnd);
+    			TypeMeasure m;
+    			switch (measure) {
+    				case 1:
+    					m = TypeMeasure.SOLAR_RADIATION;
+    					break;
+    				case 2:
+    					m = TypeMeasure.DEW_FROST;
+    					break;
+    				case 3:
+    					m = TypeMeasure.RELATIVE_HUMIDITY;
+    					break;
+    				case 4:
+    					m = TypeMeasure.WIND_SPEED;
+    					break;
+    				case 5:
+    					m = TypeMeasure.PRECIPITATION;
+    					break;
+    				case 6:
+    					m = TypeMeasure.TEMPERATURE;
+    					break;
+    				default:
+    					m = TypeMeasure.ERROR;
+    			}
     			
-    			response.setContentType("text/json");
-                PrintWriter out = response.getWriter();
+    			connection = ConnectionManager.getConnection();
+    			List<AggregateResultsVO> list = 
+    					MeteofactDAO.getDataGraphics(connection, m, yearBegin, yearEnd);
+    			
+    			if (list != null) {
+    				response.setContentType("text/json");
+    				PrintWriter out = response.getWriter();
                 
-                // Devolvemos los resultados de la lista de 
-                //   AggregateSolarRadiationVO como objectos JSON
-                out.print(JSON_converter.listToJSON(list));  
+    				// Devolvemos los resultados de la lista de 
+    				//   AggregateResultsVO como objectos JSON
+    				out.print(JSON_converter.listToJSON(list));
+    			} else {
+    				log.error("Error recogiendo los datos de la BD. " + 
+    						measure + " - " + yearBegin + " - " + yearEnd);
+        			errorJson(response); return;
+    			}
   
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block

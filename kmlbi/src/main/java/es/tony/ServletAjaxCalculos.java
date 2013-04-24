@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import es.tony.dataProcesing.RelevantInfo;
 import es.tony.persistence.ConnectionManager;
 import es.tony.persistence.MeteofactDAO;
+import es.tony.persistence.TypeMeasure;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -70,8 +71,8 @@ public class ServletAjaxCalculos extends HttpServlet {
     			
     			double solarRadiation, windSpeed;
 
-    			solarRadiation = MeteofactDAO.getSolarRadiation(connection, rlatitude, rlongitude);
-    			windSpeed = MeteofactDAO.getWindSpeed(connection, rlatitude, rlongitude);
+    			solarRadiation = MeteofactDAO.getMeasure(connection, TypeMeasure.SOLAR_RADIATION, rlatitude, rlongitude);
+    			windSpeed = MeteofactDAO.getMeasure(connection, TypeMeasure.WIND_SPEED, rlatitude, rlongitude);
                 
     			
     			double energyGenerated;

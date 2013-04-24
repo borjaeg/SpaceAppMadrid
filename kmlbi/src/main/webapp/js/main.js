@@ -6,7 +6,7 @@ window.addBindings = function(){
     $( "#choice" ).buttonset();
     $("#botonMapa").click(
       function() {
-    	if (validateYear && validateMonth && validateDay)
+    	if (validateYear && validateMonth && validateDay) {
           apagar();
           getInformation('http://localhost:8080/kmlbi/biservlet?q=' + 
             $("#measureSelect").val() + '&fYear=' + 
@@ -17,8 +17,9 @@ window.addBindings = function(){
             $("#datepickerFrom").val() + '&tDay=' + 
             $("#datepickerTo").val() + '&aggr=' + 
             $("#choice :radio:checked").val());
-    	else
+    	} else {
     		alert('Invalid');
+    	}
     });
     
     

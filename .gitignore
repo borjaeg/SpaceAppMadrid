@@ -1,1 +1,10 @@
+# Mac .DS_Store
 *.DS_Store
+
+# Maven
+kmlbi/target
+
+# Eclipse
+kmlbi/.classpath
+kmlbi/.project
+kmlbi/.settings

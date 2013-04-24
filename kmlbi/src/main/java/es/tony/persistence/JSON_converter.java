@@ -10,18 +10,18 @@ import org.json.simple.JSONObject;
 public class JSON_converter {
 	
 	@SuppressWarnings("unchecked")
-	public static JSONObject listToJSON(List<AggregateSolarRadiationVO> list) {
+	public static JSONObject listToJSON(List<AggregateResultsVO> list) {
 		JSONObject json = new JSONObject();
 		JSONArray max = new JSONArray();
 		JSONArray min = new JSONArray();
 		JSONArray avg = new JSONArray();
 		
-		Iterator<AggregateSolarRadiationVO> it = list.iterator();		
+		Iterator<AggregateResultsVO> it = list.iterator();		
 		while (it.hasNext()) {
-			AggregateSolarRadiationVO data = it.next();
-			max.add(data.getSunRadiationMax());
-			min.add(data.getSunRadiationMin());
-			avg.add(data.getSunRadiationAvg());
+			AggregateResultsVO data = it.next();
+			max.add(data.getMax());
+			min.add(data.getMin());
+			avg.add(data.getAvg());
 		}
 		
 		json.put("max", max);

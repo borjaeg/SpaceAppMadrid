@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class ConnectionManager {
 
 	private final static String DRIVER_CLASS_NAME = "org.postgresql.Driver";
-	private final static String DRIVER_URL = "jdbc:postgresql://localhost:5432/MeteoDB";
-	private final static String USER = "postgres";
-	private final static String PASSWORD = "mamagiorgias";
+	private final static String DRIVER_URL = "jdbc:postgresql://localhost:5432/meteobd";
+	private final static String USER = "alberto";
+	private final static String PASSWORD = "*";
 
 	static {
 
