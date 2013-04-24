@@ -54,7 +54,7 @@ Dependencies
  * [eigenbase 1.1.0.10924](http://www.eigenbase.org/)
  * [Json-simple 1.1](https://code.google.com/p/json-simple/)
  * [htmlunit 2.12](http://htmlunit.sourceforge.net/)
- * ch.hsr.geohash
+ * [ch.hsr.geohash](https://github.com/kungfoo/geohash-java)
 
 
 Resources
