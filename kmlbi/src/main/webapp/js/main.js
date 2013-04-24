@@ -138,9 +138,11 @@ window.tabs = function (){
         if ($("#botonMapa").css("display") == "inline" && $(this).attr('id') == "cambiaGraficas") {
         	$("#botonMapa").css({ display: "none" });
         	$("#botonGraficas").css({ display: "inline" });
+        	$(".leyenda").css({ display: "none" });
         } else if ($("#botonMapa").css("display") == "none" && $(this).attr('id') == "cambiaMapa") {
         	$("#botonMapa").css({ display: "inline" });
         	$("#botonGraficas").css({ display: "none" });
+        	$(".leyenda").css({ display: "block" });
         }
         
     });

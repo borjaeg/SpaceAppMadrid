@@ -12,3 +12,6 @@ kmlbi/.settings
 # Tomcat & auxiliary scripts
 kmlbi/auto.sh
 kmlbi/req.sh
+
+# Log file
+kmlbi/loging.log 
