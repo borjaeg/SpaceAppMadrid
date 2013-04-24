@@ -416,13 +416,9 @@ margin-bottom: 10px;
 }
 
 #loading {
-	position: absolute;
+	position: fixed;
 	height: 20px;
 	width: 220px;
-	top: 50%;
-	left: 50%;
-	margin-top: -10px;
-	margin-left: -110px;
 	z-index: 999; /* Nadie va encima del loading */
 	display: none;
 }

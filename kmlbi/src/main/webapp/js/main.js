@@ -18,7 +18,7 @@ window.addBindings = function(){
             $("#datepickerTo").val() + '&aggr=' + 
             $("#choice :radio:checked").val());
     	} else {
-    		alert('Invalid');
+    		alert('Invalid inputs');
     	}
     });
     
@@ -78,7 +78,7 @@ window.addBindings = function(){
             });
         } else {
             encender();
-            alert("Datos invalidos");
+            alert("Invalid inputs");
         }
     });
 
@@ -367,7 +367,14 @@ function getPageSize() {
 function apagar() {
     $('#Playerholder, #Player, embed, object')
     .css({ 'visibility' : 'visible' });
+    
+    /* Show and center loading div */
     $('#loading').css('display', 'block');
+    var top = Math.max($(window).height() / 2 - $("#loading")[0].offsetHeight / 2, 0);
+    var left = Math.max($(window).width() / 2 - $("#loading")[0].offsetWidth / 2, 0);
+    $("#loading").css('top', top + "px");
+    $("#loading").css('left', left + "px");
+    
     $('body')
     .append('<div id="lightsoff-background"></div>');
 
