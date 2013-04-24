@@ -59,7 +59,7 @@ Dependencies
 
 Resources
 ---------
- * [Github MAIN Repo](https://github.com/borja3790/SpaceAppMadrid)
+ * [GitHub MAIN Repo](https://github.com/borja3790/SpaceAppMadrid)
  * [GitHub Repo FrontEnd Code](https://github.com/rafinskipg/Energy2PeopleFront)
  * [FrontEnd Test Page](http://appsets.com/index.html)
 

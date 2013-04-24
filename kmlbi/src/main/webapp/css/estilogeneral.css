@@ -427,6 +427,11 @@ margin-bottom: 10px;
 	display: none;
 }
 
+#chartdiv {
+    -moz-border-radius: 10px 10px / 10px 10px;
+    border-radius: 10px 10px / 10px 10px;
+}
+
 
 /* MEDIA QUERIES */
 /* mobile devices */

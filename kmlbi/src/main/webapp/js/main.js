@@ -4,9 +4,19 @@ var validateDay = true;
 
 window.addBindings = function(){
     $( "#choice" ).buttonset();
-    $("#botonMapa").click(function() {
+    $("#botonMapa").click(
+      function() {
     	if (validateYear && validateMonth && validateDay)
-          getInformation('http://localhost:8080/kmlbi/biservlet?q=' + $("#measureSelect").val() + '&fYear=' + $("#fromYear option:selected").text() + '&tYear=' + $("#toYear option:selected").text() + '&fMonth=' + $("#fromMonth option:selected").val() + '&tMonth=' + $("#toMonth option:selected").val() +'&fDay=' + $("#datepickerFrom").val() + '&tDay=' + $("#datepickerTo").val() + '&aggr=' + $("#choice :radio:checked").val());
+          apagar();
+          getInformation('http://localhost:8080/kmlbi/biservlet?q=' + 
+            $("#measureSelect").val() + '&fYear=' + 
+            $("#fromYear option:selected").text() + '&tYear=' + 
+            $("#toYear option:selected").text() + '&fMonth=' + 
+            $("#fromMonth option:selected").val() + '&tMonth=' + 
+            $("#toMonth option:selected").val() +'&fDay=' + 
+            $("#datepickerFrom").val() + '&tDay=' + 
+            $("#datepickerTo").val() + '&aggr=' + 
+            $("#choice :radio:checked").val());
     	else
     		alert('Invalid');
     });
@@ -16,6 +26,7 @@ window.addBindings = function(){
         // Llamada AJAX para mostrar los graficos
         apagar();
         var request = {
+          "measure"  	: $("#measureSelect option:selected").val(),	
           "yearBegin"   : $("#fromYear option:selected").val(),
           "yearEnd"     : $("#toYear option:selected").val()
         };
@@ -35,7 +46,7 @@ window.addBindings = function(){
             });
         } else {
             encender();
-            alert("Años invalidos");
+            alert("Invalid years");
         }
     });
     
@@ -149,6 +160,7 @@ var currentKmlObject = null;
       currentKmlObject = kmlObject;
       ge.getFeatures().appendChild(kmlObject);
     }
+    encender();
   }
 
   var map_picker; 
