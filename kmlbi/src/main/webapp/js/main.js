@@ -418,22 +418,26 @@ $(function(){
 
   var auxFromDay;
   var auxToDay;
-
+  var fromToYear;
   var auxMeasure;
 
   var auxAggreg;
 
   var validate = true;
-
-  $("#fromYear").change(function() {
-    auxFromYear = parseInt($("#fromYear option:selected").text());
-    $("#saveYears").html("(" + auxFromYear + "-" + auxToYear + ")");
+ 
+  
+  var setAuxFromToYears = function(){
+   auxFromYear = ( $("#fromYear option:selected").text().length == 0) ? 0 :  parseInt($("#fromYear option:selected").text());    
+   auxToYear = ( $("#toYear option:selected").text().length == 0) ? 0 :  parseInt($("#toYear option:selected").text());    
+   fromToYear = "(" +auxFromYear+ "-" + auxToYear + ")";
+    $("#saveYears").html(fromToYear);
     validar(auxFromYear, auxToYear, 1);
+  }
+  $("#fromYear").change(function() {
+    setAuxFromToYears();
   });
   $("#toYear").change(function() {
-    auxToYear = parseInt($("#toYear option:selected").text());
-    $("#saveYears").html("(" + auxFromYear + "-" + auxToYear + ")");
-    validar(auxFromYear, auxToYear, 1);
+    setAuxFromToYears();  
   });
 
   $("#fromMonth").change(function() {
