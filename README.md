@@ -81,3 +81,7 @@ Project Information
  * Pau Contreras de Luna
  * [Daniel Sanchez Seijo](https://github.com/Daniseijo)
  * [David Portilla Abellan](https://github.com/davidportilla)
+
+ ### Rest API
+ * ([year]:[year])(https://github.com/albertoalcolea)
+ * ([year][month]:[year][month])(https://github.com/borja3790)
