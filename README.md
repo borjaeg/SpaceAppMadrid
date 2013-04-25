@@ -82,28 +82,28 @@ Project Information
  * [Daniel Sanchez Seijo](https://github.com/Daniseijo)
  * [David Portilla Abellan](https://github.com/davidportilla)
 
- ### Rest API (json)
-
- * Aggregations ({aggr}):
+Rest API (json)
+-------------------
+### Aggregations ({aggr}):
 	* Average : avg
 	* Total   : tot
 	* Maximum : max
 	* Minimum : min
 
-* Energy Parameters ({param}):
+### Energy Parameters ({param}):
 	* Horizontal Solar Radiation : hsr
 	* Wind speed                 : win
 	* Temperature                : tem
 	* Relative Humidity          : hum
 	* Dew & frost                : dew
 
-* Time 
+###Time 
 	* ([year_1]:[year_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year_1/year_2
 	* ([year][month_1]:[year][month_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year/month_1/month_2
 	* ([year_1][month_1][day_1]:[year_2][month_2][day_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/(mm.dd.yyyy)_1/(mm.dd.yyyy)_2
 	* ([year]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year
 
-* Examples
+###Examples
 	1. Horizontal Solar Radiation Average between 1995 and 2006 (year by year)
 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/avg/hsr/1995/2006
 
