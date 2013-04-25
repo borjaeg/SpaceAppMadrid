@@ -91,25 +91,25 @@ Project Information
  	* Minimum : min
 
 * Energy Parameters ({param}):
-    * Horizontal Solar Radiation : hsr
+	* Horizontal Solar Radiation : hsr
 	* Wind speed                 : win
-    * Temperature                : tem
-    * Relative Humidity          : hum
-    * Dew & frost                : dew
+	* Temperature                : tem
+	* Relative Humidity          : hum
+	* Dew & frost                : dew
 
 * Time 
- * ([year_1]:[year_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year_1/year_2
- * ([year][month_1]:[year][month_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year/month_1/month_2
- * ([year_1][month_1][day_1]:[year_2][month_2][day_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/(mm.dd.yyyy)_1/(mm.dd.yyyy)_2
- * ([year]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year
+	* ([year_1]:[year_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year_1/year_2
+	* ([year][month_1]:[year][month_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year/month_1/month_2
+	* ([year_1][month_1][day_1]:[year_2][month_2][day_2]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/(mm.dd.yyyy)_1/(mm.dd.yyyy)_2
+	* ([year]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year
 
 * Examples
-1. Horizontal Solar Radiation Average between 1995 and 2006 (year by year)
- - http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/avg/hsr/1995/2006
+	1. Horizontal Solar Radiation Average between 1995 and 2006 (year by year)
+ 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/avg/hsr/1995/2006
 
-2. Max. Speed wind between January and December in year 2007 (month by month)
- - http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/max/win/2007/1/12
+	2. Max. Speed wind between January and December in year 2007 (month by month)
+	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/max/win/2007/1/12
 
-3. Total Precipitation between 02.05.1995 and 07.22.2006 (day by day)
- - http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/tot/pre/02.05.1995/07.22.2006
+	3. Total Precipitation between 02.05.1995 and 07.22.2006 (day by day)
+ 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/tot/pre/02.05.1995/07.22.2006
 
