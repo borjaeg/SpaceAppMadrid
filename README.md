@@ -85,10 +85,10 @@ Project Information
  ### Rest API (json)
 
  * Aggregations ({aggr}):
- 	* Average : avg
- 	* Total   : tot
- 	* Maximum : max
- 	* Minimum : min
+	* Average : avg
+	* Total   : tot
+	* Maximum : max
+	* Minimum : min
 
 * Energy Parameters ({param}):
 	* Horizontal Solar Radiation : hsr
@@ -105,11 +105,11 @@ Project Information
 
 * Examples
 	1. Horizontal Solar Radiation Average between 1995 and 2006 (year by year)
- 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/avg/hsr/1995/2006
+	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/avg/hsr/1995/2006
 
 	2. Max. Speed wind between January and December in year 2007 (month by month)
 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/max/win/2007/1/12
 
 	3. Total Precipitation between 02.05.1995 and 07.22.2006 (day by day)
- 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/tot/pre/02.05.1995/07.22.2006
+	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/tot/pre/02.05.1995/07.22.2006
 
