@@ -262,6 +262,9 @@ function initCallback(instance) {
   ge.getNavigationControl().setVisibility(ge.VISIBILITY_AUTO);
 }
 
+function failureCallback(errorCode) {
+}
+
 
 var chartData = []; // para graficos
 
@@ -508,7 +511,6 @@ $(function(){
   });
 });
 
-
 function validar(from, to, type) {
   switch (type) {
     case 1:
@@ -531,7 +533,6 @@ function validar(from, to, type) {
     break;
   }
 }
-
 
 function date2int(date) {
   if (date != undefined) {
