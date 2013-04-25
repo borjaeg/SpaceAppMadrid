@@ -191,9 +191,7 @@ public class kmlServletNasa extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Fichero no encontrado");
-			resp.sendRedirect("fileNotFound.jsp");
-
+			log.error("File not found");
 		}
 
 	}

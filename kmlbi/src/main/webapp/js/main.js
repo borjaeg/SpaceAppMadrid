@@ -181,7 +181,6 @@ var currentKmlObject = null;
       }, 0);
       return;
     }else{
-      console.log("LLEGO BIEN");
       currentKmlObject = kmlObject;
       ge.getFeatures().appendChild(kmlObject);
     }
@@ -261,14 +260,6 @@ function initCallback(instance) {
 
   // add a navigation control
   ge.getNavigationControl().setVisibility(ge.VISIBILITY_AUTO);
-
-  // add some layers
-  //ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
-  //ge.getLayerRoot().enableLayerById(ge.LAYER_ROADS, true);
-
-}
-
-function failureCallback(errorCode) {
 }
 
 
@@ -517,6 +508,7 @@ $(function(){
   });
 });
 
+
 function validar(from, to, type) {
   switch (type) {
     case 1:
@@ -539,6 +531,7 @@ function validar(from, to, type) {
     break;
   }
 }
+
 
 function date2int(date) {
   if (date != undefined) {
