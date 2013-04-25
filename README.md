@@ -104,7 +104,6 @@ Project Information
  * ([year]) -> https://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/{aggr}/{param}/year
 
 * Examples
-
 1. Horizontal Solar Radiation Average between 1995 and 2006 (year by year)
  - http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/avg/hsr/1995/2006
 
