@@ -15,12 +15,12 @@ import es.tony.domain.OlapData;
 import es.tony.domain.RequestIF;
 import es.tony.domain.RequestVO;
 
-
 @Path("/json")
 public class MeteoDataService {
 	private final static Logger log = Logger.getLogger(MeteoDataService.class);
+
 	@GET
-	@Path("/{mode}/{aggr}/{operation}/{time}")
+	@Path("/{aggr}/{operation}/{time}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<OlapData> getOlapData1(@PathParam("aggr") String aggr,
 			@PathParam("operation") String operation,
@@ -44,17 +44,17 @@ public class MeteoDataService {
 	}
 
 	@GET
-	@Path("/{mode}/{aggr}/{operation}/{timeFrom}/{timeTo}")
+	@Path("/{aggr}/{operation}/{timeFrom}/{timeTo}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<OlapData> getOlapData2(@PathParam("mode") String mode,
-			@PathParam("aggr") String aggr,
+	public List<OlapData> getOlapData2(@PathParam("aggr") String aggr,
 			@PathParam("operation") String operation,
-			@PathParam("timeFrom") String timeFrom, @PathParam("timeTo") String timeTo) {
+			@PathParam("timeFrom") String timeFrom,
+			@PathParam("timeTo") String timeTo) {
 
 		// Test if mode is a number
 		RequestIF request = new RequestVO();
-		switch (Integer.parseInt(mode)) {
-		case 1:// year:year
+
+		if (timeFrom.length() == 4 && timeTo.length() == 4) {
 			request.setOperation(translateMeasure(operation));
 			request.setAnyoFrom(Integer.parseInt(timeFrom));
 			request.setAnyoTo(Integer.parseInt(timeTo));
@@ -63,8 +63,8 @@ public class MeteoDataService {
 			request.setFechaFrom("");
 			request.setFechaTo("");
 			request.setAggr(translateAggregation(aggr));
-			break;
-		case 2:
+		} else if ((timeFrom.length() == 4 && (timeTo.length() == 1 || timeTo
+				.length() == 2))) {
 			request.setOperation(translateMeasure(operation));
 			request.setAnyoFrom(Integer.parseInt(timeFrom));
 			request.setAnyoTo(0);
@@ -73,8 +73,7 @@ public class MeteoDataService {
 			request.setFechaFrom("");
 			request.setFechaTo("");
 			request.setAggr(translateAggregation(aggr));
-			break;
-		case 3:
+		} else if (timeFrom.length() > 4 && timeTo.length() > 1) {
 			request.setOperation(translateMeasure(operation));
 			request.setAnyoFrom(0);
 			request.setAnyoTo(0);
@@ -83,9 +82,7 @@ public class MeteoDataService {
 			request.setFechaFrom(transformTime(timeFrom));
 			request.setFechaTo(transformTime(timeTo));
 			request.setAggr(translateAggregation(aggr));
-			break;
 		}
-
 		MdxProcess mdxProcess = new MdxProcess(request);
 
 		return mdxProcess.doIt();
@@ -98,16 +95,15 @@ public class MeteoDataService {
 	}
 
 	@GET
-	@Path("/{mode}/{aggr}/{operation}/{timeFrom}/{timeTo}/{time}")
+	@Path("/{aggr}/{operation}/{timeFrom}/{timeTo}/{time}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<OlapData> getOlapData3(@PathParam("mode") String mode,
-			@PathParam("aggr") String aggr,
+	public List<OlapData> getOlapData3(@PathParam("aggr") String aggr,
 			@PathParam("operation") String operation,
-			@PathParam("timeFrom") String timeFrom, @PathParam("timeTo") String timeTo,
-			@PathParam("time") String time) {
+			@PathParam("timeFrom") String timeFrom,
+			@PathParam("timeTo") String timeTo, @PathParam("time") String time) {
 
 		RequestIF request = new RequestVO();
-		
+
 		request.setOperation(translateMeasure(operation));
 		request.setAnyoFrom(Integer.parseInt(timeFrom));
 		request.setMothFrom(Integer.parseInt(timeTo));
@@ -117,7 +113,7 @@ public class MeteoDataService {
 		request.setFechaFrom("");
 		request.setAggr(translateAggregation(aggr));
 
-		MdxProcess mdxProcess = new MdxProcess(request);	
+		MdxProcess mdxProcess = new MdxProcess(request);
 
 		return mdxProcess.doIt();
 	}

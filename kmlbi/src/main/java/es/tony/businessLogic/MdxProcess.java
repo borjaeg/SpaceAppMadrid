@@ -33,8 +33,8 @@ public class MdxProcess implements OlapProcess {
 	private final static Logger log = Logger.getLogger(MdxProcess.class);
 	RequestIF request;
 
-	public static double minValue = 50;
-	public static double maxValue = -50;
+	public static double minValue = 500;
+	public static double maxValue = -500;
 	public static String measure = "";
 
 	public MdxProcess(RequestIF request) {
@@ -43,9 +43,12 @@ public class MdxProcess implements OlapProcess {
 			_connection = DriverManager
 					.getConnection("jdbc:mondrian:"
 							+ "Jdbc='jdbc:postgresql://localhost:5432/MeteoDB';"
+							// +
 							+ "Catalog='file:/Users/b3j90/Documents/Tomcat/apache-tomcat-6.0.36/webapps/kmlbi/WEB-INF/classes/MeteoSchemaGeoHashing.xml';"
-							+ "JdbcUser='postgres';"
-							+ "JdbcPassword='password';"
+							// +
+							// "Catalog='file:E:/apache-tomcat-6.0.36/webapps/kmlbi/WEB-INF/classes/MeteoSchemaGeoHashing.xml';"
+							+ "JdbcUser='madrid';"
+							+ "JdbcPassword='madridPass';"
 							+ "JdbcDrivers=org.postgresql.Driver;");
 			_olapConnection = _connection.unwrap(OlapConnection.class);
 			this.request = request;
@@ -83,7 +86,7 @@ public class MdxProcess implements OlapProcess {
 				Cell cell = cellSet.getCell(rowPos, colPos);
 				if (!cell.isEmpty()) {
 					olapData = new OlapData();
-					olapData.setSunRadiationAvg(Float.valueOf(cell.getValue()
+					olapData.setMeasure(Float.valueOf(cell.getValue()
 							.toString()));
 					if (this.maxValue < Float.valueOf(cell.getValue()
 							.toString()))
@@ -96,26 +99,28 @@ public class MdxProcess implements OlapProcess {
 								.toString());
 
 					if (request.getAnyoFrom() != 0) { // agregaci��n a��o,
-														// intervalo a��o a a��o,
+														// intervalo a��o a
+														// a��o,
 						// o meses...
-						if (request.getAnyoTo() != 0) { // intervarlo a��o a a��o
+						if (request.getAnyoTo() != 0) { // intervarlo a��o a
+														// a��o
 														// [year]:[year]
 							// return generate(0);
-							olapData.setFecha(rowPos.getMembers().get(1)
+							olapData.setDate(rowPos.getMembers().get(1)
 									.getName()
 									+ "-01-01");
-							olapData.setFechaSig(rowPos.getMembers().get(1)
+							olapData.setNextDate(rowPos.getMembers().get(1)
 									.getName()
 									+ "-12-31");
 						} else if (request.getMonthTo() != 0) { // intervalo mes
 																// a mes
 
-							olapData.setFecha(rowPos.getMembers().get(1)
+							olapData.setDate(rowPos.getMembers().get(1)
 									.getParentMember().getName()
 									+ "-"
 									+ getMesTotal(rowPos.getMembers().get(1)
 											.getName()) + "-01");
-							olapData.setFechaSig(rowPos.getMembers().get(1)
+							olapData.setNextDate(rowPos.getMembers().get(1)
 									.getParentMember().getName()
 									+ "-"
 									+ getMesTotal(rowPos.getMembers().get(1)
@@ -123,12 +128,12 @@ public class MdxProcess implements OlapProcess {
 							// [year].[month]:[year]:[month]
 						} else { // agregacion [year].[month] V [year]
 							if (request.getMonthFrom() != 0) { // [year].[month]
-								olapData.setFecha(rowPos.getMembers().get(1)
+								olapData.setDate(rowPos.getMembers().get(1)
 										.getParentMember().getName()
 										+ "-"
 										+ getMesTotal(rowPos.getMembers()
 												.get(1).getName()) + "-01");
-								olapData.setFechaSig(rowPos.getMembers().get(1)
+								olapData.setNextDate(rowPos.getMembers().get(1)
 										.getParentMember().getName()
 										+ "-"
 										+ getMesTotal(rowPos.getMembers()
@@ -136,24 +141,24 @@ public class MdxProcess implements OlapProcess {
 								// return generate(2);
 							} else {
 								// [year]
-								olapData.setFecha(rowPos.getMembers().get(1)
+								olapData.setDate(rowPos.getMembers().get(1)
 										.getName()
-										+ "01-01");
-								olapData.setFechaSig(rowPos.getMembers().get(1)
+										+ "-01-01");
+								olapData.setNextDate(rowPos.getMembers().get(1)
 										.getName()
-										+ "12-31");
+										+ "-12-31");
 							}
 						}
 					} else { // [day] V [day]:[day]
 						if (request.getFechaTo() != null) { // [day] : [day]
-							olapData.setFechaSig(rangoTemporalTotalSig(rowPos
+							olapData.setNextDate(rangoTemporalTotalSig(rowPos
 									.getMembers().get(1).getParentMember()
 									.getParentMember().getName(), rowPos
 									.getMembers().get(1).getParentMember()
 									.getName(), rowPos.getMembers().get(1)
 									.getName()));
 
-							olapData.setFecha(rangoTemporalTotal(rowPos
+							olapData.setDate(rangoTemporalTotal(rowPos
 									.getMembers().get(1).getParentMember()
 									.getParentMember().getName(), rowPos
 									.getMembers().get(1).getParentMember()
@@ -161,13 +166,13 @@ public class MdxProcess implements OlapProcess {
 									.getName()));
 						} else { // [day]
 
-							olapData.setFecha(rangoTemporalTotal(rowPos
+							olapData.setDate(rangoTemporalTotal(rowPos
 									.getMembers().get(1).getParentMember()
 									.getParentMember().getName(), rowPos
 									.getMembers().get(1).getParentMember()
 									.getName(), rowPos.getMembers().get(1)
 									.getName()));
-							olapData.setFechaSig(rangoTemporalTotalSig(rowPos
+							olapData.setNextDate(rangoTemporalTotalSig(rowPos
 									.getMembers().get(1).getParentMember()
 									.getParentMember().getName(), rowPos
 									.getMembers().get(1).getParentMember()

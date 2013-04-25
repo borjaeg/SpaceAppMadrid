@@ -57,18 +57,18 @@ public class KmlCreator {
 					.withOutline(false)
 					.withColor(
 							sunRadiationToColor(olapDataList.get(i)
-									.getSunRadiationAvg()));
+									.getMeasure()));
 
 			int decimal = String.valueOf(
-					olapDataList.get(i).getSunRadiationAvg()).indexOf('.');
+					olapDataList.get(i).getMeasure()).indexOf('.');
 
 			String formattedData = String.valueOf(
-					olapDataList.get(i).getSunRadiationAvg()).substring(0,
+					olapDataList.get(i).getMeasure()).substring(0,
 					decimal + 2);
 
 			TimeSpan ts = new TimeSpan().withBegin(
-					olapDataList.get(i).getFecha()).withEnd(
-					olapDataList.get(i).getFechaSig());
+					olapDataList.get(i).getDate()).withEnd(
+					olapDataList.get(i).getNextDate());
 			Placemark placemark = document
 					.createAndAddPlacemark()
 					.withName("Summary:")
@@ -87,8 +87,8 @@ public class KmlCreator {
 					.withAltitudeMode(AltitudeMode.RELATIVE_TO_GROUND);
 			latLongToCoordinates(olapDataList.get(i).getLatitude(),
 					olapDataList.get(i).getLongitude(), polygon, olapDataList
-							.get(i).getSunRadiationAvg(), olapDataList.get(i)
-							.getFecha());
+							.get(i).getMeasure(), olapDataList.get(i)
+							.getDate());
 		}
 
 		File kmlFile = null;

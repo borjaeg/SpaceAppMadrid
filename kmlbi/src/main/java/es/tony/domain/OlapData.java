@@ -4,9 +4,9 @@ public class OlapData {
 
 	private float latitude;
 	private float longitude;
-	private double sunRadiationAvg;
-	private String fecha;
-	private String fechaSig;
+	private double measure;
+	private String date;
+	private String nextDate;
 
 	public float getLatitude() {
 		return latitude;
@@ -24,35 +24,35 @@ public class OlapData {
 		this.longitude = longitude;
 	}
 
-	public double getSunRadiationAvg() {
-		return sunRadiationAvg;
+	public double getMeasure() {
+		return measure;
 	}
 
-	public void setSunRadiationAvg(double sunRadiationAvg) {
-		this.sunRadiationAvg = sunRadiationAvg;
+	public void setMeasure(double measure) {
+		this.measure = measure;
 	}
 
-	public String getFecha() {
-		return fecha;
+	public String getDate() {
+		return date;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
-	public String getFechaSig() {
-		return fechaSig;
+	public String getNextDate() {
+		return nextDate;
 	}
 
-	public void setFechaSig(String fechaSig) {
-		this.fechaSig = fechaSig;
+	public void setNextDate(String nextDate) {
+		this.nextDate = nextDate;
 	}
 
 	@Override
 	public String toString() {
 		return "OlapData [latitude=" + latitude + ", longitude=" + longitude
-				+ ", sunRadiationAvg=" + sunRadiationAvg + ", sunRadiationMax="
-				+ ", sunRadiationMin=" + ", fecha=" + fecha + "]";
+				+ ", measure=" + measure + ", sunRadiationMax="
+				+ ", sunRadiationMin=" + ", date=" + date + "]";
 	}
 
 }
