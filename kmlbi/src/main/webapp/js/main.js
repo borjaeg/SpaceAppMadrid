@@ -453,16 +453,23 @@ $(function(){
   $("#toMonth").change(function() {
    setAuxFromToMonths();  
   });
-
-  $("#datepickerFrom").change(function() {
-    auxFromDay = ($("#datepickerFrom").val());
+    
+    
+   var setAuxFromToDays = function(){
+    auxFromDay = ( $("#datepickerFrom").val().length == 0) ? 'Select one' :$("#datepickerFrom").val();    
+    auxToDay = ( $("#datepickerTo").val().length == 0) ? 'Select one' : $("#datepickerTo").val();    
+    
+    
     $("#saveDays").html("(" + auxFromDay + "-" + auxToDay + ")");
     validar(date2int(auxFromDay), date2int(auxToDay), 3);
+  }
+  $("#datepickerFrom").change(function() {
+     setAuxFromToDays(); 
+   
   });
   $("#datepickerTo").change(function() {
-    auxToDay = ($("#datepickerTo").val());
-    $("#saveDays").html("(" + auxFromDay + "-" + auxToDay + ")");
-    validar(date2int(auxFromDay), date2int(auxToDay), 3);
+    setAuxFromToDays(); 
+        
   });
 
   $("#measureSelection").change(function() {
