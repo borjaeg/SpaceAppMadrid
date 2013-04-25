@@ -80,8 +80,7 @@ public class ServletAjaxCalculos extends HttpServlet {
     			double monetaryEquivalentSolar, monetaryEquivalentWind, monetaryEquivalentTotal;
     			double installationCosSolar, installationCosWind, installationCosTotal;
     			int timeRecoverSolar, timeRecoverWind, timeRecoverTotal;
-    			
-    			log.trace("windspeed: " + windSpeed);
+
     			
     			// Realizamos los calculos
     			
@@ -108,8 +107,6 @@ public class ServletAjaxCalculos extends HttpServlet {
     					Calculus.facilityWindCost(generators, efficiency);
     			timeRecoverWind = 
     					Calculus.timeToRecoverTheInversion(installationCosWind, monetaryEquivalentWind);
-    			
-    			log.trace("energyGeneratedWind: " + energyGeneratedWind);
     			
     			// Total
     			energyGeneratedTotal = 

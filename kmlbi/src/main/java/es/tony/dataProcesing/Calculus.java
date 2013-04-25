@@ -1,12 +1,9 @@
 package es.tony.dataProcesing;
 
-import org.apache.log4j.Logger;
-
 
 public class Calculus {
 	public final static double AVERAGE_ENERGY_COST = 0.19; // $/kWh
 	
-	private final static Logger log = Logger.getLogger(Calculus.class);
 	
 	
 	// installation_type;
@@ -75,8 +72,6 @@ public class Calculus {
 		
 		energy_generated_wind = (-0.0027*v*v*v+0.0614*v*v-0.2985*v+0.45); // unitary energy
 		
-		log.trace("energy-prev: " + energy_generated_wind);
-		
 		switch (installation_type) {
 			case 0: 
 				energy_generated_wind = 3000*energy_generated_wind*24*number_windmills*0.5;
@@ -93,8 +88,6 @@ public class Calculus {
 				max_power_wind = 650;
 				break;
 		}
-		
-		log.trace("energy-post: " + energy_generated_wind);
 		
 		if(v > 12.5) {
 			energy_generated_wind = max_power_wind*24;
