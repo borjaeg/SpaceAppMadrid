@@ -59,10 +59,10 @@
 					<h3>Energy generated</h3>
 					<div class="">
 						<h4>Solar Surface (m2)</h4>
-						<input type="number" step="1" id="surface">
+						<input type="number" step="1" id="surface" value="0">
 
 						<h4>Number of generators</h4>
-						<input type="number" step="1" id="generators">
+						<input type="number" step="1" id="generators" value="0">
 
 						<h4>Installation level</h4>
 						<select id="efficiency">
@@ -119,19 +119,56 @@
                 <p><a id = "getAnalyzeButton" class="boton1">Calculate</a></p>
                 <br>
             </div>
-            
-            <div id="derecha" class="span8">
-                <h1>Renewable Energy Analyzer</h1>
-                <div id="resultado" class="contenido">
-                  <div class="row"> <h3> Results </h3></div>
-                    <div class="result"><h4> Energy generated (MWh): <span id="resEnergyGenerated"></span></h4></div>
-                    <div class="result"><h4> Home equivalent (homes): <span id="resHomeEquivalent"></span></h4></div>
-                    <div class="result"><h4> Monetary equivalent (dollar/day): <span id="resMonetaryEquivalent"></span></h4></div>
-                    <div class="result"><h4> Installation cost (dollar): <span id="resInstallationCost"></span></h4></div>
-                    <div class="result"><h4> Time to recover the investment (years): <span id="resTimeRecover"></span></h4></div>
-                </div>
-            </div>
-        </div>
+
+			<div id="derecha" class="span8">
+				<h1>Renewable Energy Analyzer</h1>
+				<div id="resultado" class="wrapper-contenido">
+					<h3>Results</h3>
+					<table border="1">
+						<col width="46%">
+						<col width="18%">
+						<col width="18%">
+  						<col width="18%">
+						<tr>
+							<th></th>
+							<th>Solar panels</th>
+							<th>Windmills</th>
+							<th>Both</th>
+						</tr>
+						<tr>
+							<td class="first">Energy generated (MWh)</td>
+							<td id="solar_energy_generated"></td>
+							<td id="wind_energy_generated"></td>
+							<td id="total_energy_generated"></td>
+						</tr>
+						<tr>
+							<td class="first">Home equivalent (homes)</td>
+							<td id="solar_home_equivalent"></td>
+							<td id="wind_home_equivalent"></td>
+							<td id="total_home_equivalent"></td>
+						</tr>
+						<tr>
+							<td class="first">Monetary equivalent (dollar/day)</td>
+							<td id="solar_monetary_equivalent"></td>
+							<td id="wind_monetary_equivalent"></td>
+							<td id="total_monetary_equivalent"></td>
+						</tr>
+						<tr>
+							<td class="first">Installation cost (dollar)</td>
+							<td id="solar_installation_cost"></td>
+							<td id="wind_installation_cost"></td>
+							<td id="total_installation_cost"></td>
+						</tr>
+						<tr>
+							<td class="first">Time to recover the investment (years)</td>
+							<td id="solar_time_recover"></td>
+							<td id="wind_time_recover"></td>
+							<td id="total_time_recover"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
         <div id="loading">
 			<img src="img/loading.gif">
 		</div>

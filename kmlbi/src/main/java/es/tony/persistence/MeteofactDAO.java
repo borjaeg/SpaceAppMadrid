@@ -108,9 +108,9 @@ public class MeteofactDAO {
 					"SELECT " +
 						"AVG(" + field + ") AS avg " +
 					"FROM location_dimension, meteofact " +
-					"WHERE latitude = ? AND longitude = ? " +
-						"AND meteofact.idlocation = location_dimension.idlocation " +
-						"AND NOT (" + field + " = 0)";
+					"WHERE NOT (" + field + " = 0) " +
+						"AND latitude = ? AND longitude = ? " +
+						"AND meteofact.idlocation = location_dimension.idlocation";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(queryString,
 							ResultSet.TYPE_SCROLL_INSENSITIVE,

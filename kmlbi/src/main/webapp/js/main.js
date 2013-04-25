@@ -372,11 +372,23 @@ function showResultsGraphics(response, request) {
 
 //Muestra los resultados de los calculos de un JSON devuelto tras la llamada AJAX
 function showResultsCalculus(response, request) {
-	$("#resEnergyGenerated").text(separadorMiles(response["energyGenerated"]/1000));
-	$("#resHomeEquivalent").text(separadorMiles(response["homeEquivalent"]));
-	$("#resMonetaryEquivalent").text(separadorMiles(response["monetaryEquivalent"]));
-	$("#resInstallationCost").text(separadorMiles(response["installationCos"]));
-	$("#resTimeRecover").text(separadorMiles(response["timeRecover"]));
+	$("#solar_energy_generated").text(separadorMiles(response["energyGeneratedSolar"]));
+	$("#solar_home_equivalent").text(separadorMiles(response["homeEquivalentSolar"]));
+	$("#solar_monetary_equivalent").text(separadorMiles(response["monetaryEquivalentSolar"]));
+	$("#solar_installation_cost").text(separadorMiles(response["installationCosSolar"]));
+	$("#solar_time_recover").text(separadorMiles(response["timeRecoverSolar"]));
+	
+	$("#wind_energy_generated").text(separadorMiles(response["energyGeneratedWind"]));
+	$("#wind_home_equivalent").text(separadorMiles(response["homeEquivalentWind"]));
+	$("#wind_monetary_equivalent").text(separadorMiles(response["monetaryEquivalentWind"]));
+	$("#wind_installation_cost").text(separadorMiles(response["installationCosWind"]));
+	$("#wind_time_recover").text(separadorMiles(response["timeRecoverWind"]));
+	
+	$("#total_energy_generated").text(separadorMiles(response["energyGeneratedTotal"]));
+	$("#total_home_equivalent").text(separadorMiles(response["homeEquivalentTotal"]));
+	$("#total_monetary_equivalent").text(separadorMiles(response["monetaryEquivalentTotal"]));
+	$("#total_installation_cost").text(separadorMiles(response["installationCosTotal"]));
+	$("#total_time_recover").text(separadorMiles(response["timeRecoverTotal"]));
 }
 
 

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.tony.dataProcesing.RelevantInfo;
+import es.tony.dataProcesing.Calculus;
 import es.tony.persistence.ConnectionManager;
 import es.tony.persistence.MeteofactDAO;
 import es.tony.persistence.TypeMeasure;
@@ -75,20 +75,54 @@ public class ServletAjaxCalculos extends HttpServlet {
     			windSpeed = MeteofactDAO.getMeasure(connection, TypeMeasure.WIND_SPEED, rlatitude, rlongitude);
                 
     			
-    			double energyGenerated;
-    			double homeEquivalent;
-    			double monetaryEquivalent;
-    			double installationCos;
-    			int timeRecover;
+    			double energyGeneratedSolar, energyGeneratedWind, energyGeneratedTotal;
+    			double homeEquivalentSolar, homeEquivalentWind, homeEquivalentTotal;
+    			double monetaryEquivalentSolar, monetaryEquivalentWind, monetaryEquivalentTotal;
+    			double installationCosSolar, installationCosWind, installationCosTotal;
+    			int timeRecoverSolar, timeRecoverWind, timeRecoverTotal;
+    			
+    			log.trace("windspeed: " + windSpeed);
     			
     			// Realizamos los calculos
-    			RelevantInfo calculus = new RelevantInfo(efficiency);
     			
-    			energyGenerated = calculus.energyGenerated(surface, solarRadiation, windSpeed, generators);
-    			homeEquivalent = calculus.homeEquivalent();
-    			monetaryEquivalent = calculus.monetaryEquivalent();
-    			installationCos = calculus.facilityCost(surface, generators);
-    			timeRecover = calculus.timeToRecoverTheInversion();
+    			// Solar
+    			energyGeneratedSolar = 
+    					Calculus.energyGeneratedSolar(surface, solarRadiation, efficiency);
+    			homeEquivalentSolar = 
+    					Calculus.homeEquivalent(energyGeneratedSolar);
+    			monetaryEquivalentSolar = 
+    					Calculus.monetaryEquivalent(energyGeneratedSolar);
+    			installationCosSolar = 
+    					Calculus.facilitySolarCost(surface, efficiency);
+    			timeRecoverSolar = 
+    					Calculus.timeToRecoverTheInversion(installationCosSolar, monetaryEquivalentSolar);
+    			
+    			// Wind
+    			energyGeneratedWind = 
+    					Calculus.energyGeneratedWind(windSpeed, generators, efficiency);
+    			homeEquivalentWind = 
+    					Calculus.homeEquivalent(energyGeneratedWind);
+    			monetaryEquivalentWind = 
+    					Calculus.monetaryEquivalent(energyGeneratedWind);
+    			installationCosWind = 
+    					Calculus.facilityWindCost(generators, efficiency);
+    			timeRecoverWind = 
+    					Calculus.timeToRecoverTheInversion(installationCosWind, monetaryEquivalentWind);
+    			
+    			log.trace("energyGeneratedWind: " + energyGeneratedWind);
+    			
+    			// Total
+    			energyGeneratedTotal = 
+    					energyGeneratedSolar + energyGeneratedWind;
+    			homeEquivalentTotal = 
+    					Calculus.homeEquivalent(energyGeneratedTotal);
+    			monetaryEquivalentTotal = 
+    					Calculus.monetaryEquivalent(energyGeneratedTotal);
+    			installationCosTotal = 
+    					installationCosSolar + installationCosWind;
+    			timeRecoverTotal = 
+    					Calculus.timeToRecoverTheInversion(installationCosTotal, monetaryEquivalentTotal);
+    			
 
     			
                 // Creamos el objeto JSON con los resultados
@@ -96,11 +130,25 @@ public class ServletAjaxCalculos extends HttpServlet {
     	    	
     	    	response.setContentType("text/json");
     	        PrintWriter out = response.getWriter();
-    	        o.put("energyGenerated", energyGenerated);
-    	        o.put("homeEquivalent", homeEquivalent);
-    	        o.put("monetaryEquivalent", monetaryEquivalent);
-    	        o.put("installationCos", installationCos);
-    	        o.put("timeRecover", timeRecover);
+    	        
+    	        o.put("energyGeneratedSolar", energyGeneratedSolar/1000);	// /1000 MWh
+    	        o.put("homeEquivalentSolar", homeEquivalentSolar);
+    	        o.put("monetaryEquivalentSolar", monetaryEquivalentSolar);
+    	        o.put("installationCosSolar", installationCosSolar);
+    	        o.put("timeRecoverSolar", timeRecoverSolar);
+    	        
+    	        o.put("energyGeneratedWind", energyGeneratedWind/1000);		// /1000 MWh
+    	        o.put("homeEquivalentWind", homeEquivalentWind);
+    	        o.put("monetaryEquivalentWind", monetaryEquivalentWind);
+    	        o.put("installationCosWind", installationCosWind);
+    	        o.put("timeRecoverWind", timeRecoverWind);
+    	        
+    	        o.put("energyGeneratedTotal", energyGeneratedTotal/1000);	// /1000 MWh
+    	        o.put("homeEquivalentTotal", homeEquivalentTotal);
+    	        o.put("monetaryEquivalentTotal", monetaryEquivalentTotal);
+    	        o.put("installationCosTotal", installationCosTotal);
+    	        o.put("timeRecoverTotal", timeRecoverTotal);
+    	        
     	        out.print(o);
   
     		} catch (SQLException e) {
