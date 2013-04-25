@@ -80,7 +80,7 @@ AmCharts.ready(function () {
     chart.addLegend(legend);
 
     // WRITE
-    chart.write("chartdiv");
+    //chart.write("chartdiv");
 });
 
 	</script>
@@ -207,7 +207,9 @@ AmCharts.ready(function () {
                 <div id="mapa" class="contenido" ><div id = "map3d" style="width: 700px; height: 550px;"></div> </div>
                 
                 <div id="graficas" class="contenido" style="display: none">
-                	<div id="chartdiv" style="width: 700px; height: 550px; background-color: white;"></div>
+                	<div id="chartdiv">
+                		<div id="chartprev">Select two years (from and to) and a measure and press 'Draw' button.</div>
+                	</div>
                 </div>
                 
             </div>

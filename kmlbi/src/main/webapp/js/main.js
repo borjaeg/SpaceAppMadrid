@@ -270,6 +270,11 @@ var chartData = []; // para graficos
 
 // Muestra los resultados de los graficos de un JSON devuelto tras la llamada AJAX
 function showResultsGraphics(response, request) {
+	// Si no se ha dibujado antes el contenedor de graficos lo dibujamos
+	if ( $("#chartprev").length == 1 ) {
+		chart.write("chartdiv");
+	}
+	
     var chartData = [];
     var y = request.yearBegin;
     
