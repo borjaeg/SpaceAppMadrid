@@ -7,7 +7,7 @@ window.addBindings = function(){
     $("#botonMapa").click(
       function() {
     	if (validateYear && validateMonth && validateDay) {
-          apagar();
+          apagar("loading");
           getInformation('http://localhost:8080/kmlbi/biservlet?q=' + 
             $("#measureSelect").val() + '&fYear=' + 
             $("#fromYear option:selected").text() + '&tYear=' + 
@@ -25,14 +25,17 @@ window.addBindings = function(){
     
     $("#botonGraficas").click(function() {
         // Llamada AJAX para mostrar los graficos
-        apagar();
+        apagar("loading");
         var request = {
           "measure"  	: $("#measureSelect option:selected").val(),	
-          "yearBegin"   : $("#fromYear option:selected").val(),
-          "yearEnd"     : $("#toYear option:selected").val()
+          "yearFrom"    : $("#fromYear option:selected").val(),
+          "yearTo"      : $("#toYear option:selected").val(),
+          "scale"		: $("#scaleSelect option:selected").val(),
+          "latitude"	: $("#latitude").val(),
+          "longitude"	: $("#longitude").val()
         };
         
-        if (checkYears(request.yearBegin, request.yearEnd)) {
+        if (checkDataGraphs(request)) {
             $.ajax({
               type: "POST",
               url: "ajaxGraficos",
@@ -43,18 +46,18 @@ window.addBindings = function(){
                 	showResultsGraphics(data, request);
                 }
             }).always(function() {
-                encender(); 
+                encender("loading"); 
             });
         } else {
-            encender();
-            alert("Invalid years");
+            encender("loading");
+            alert("Invalid inputs");
         }
     });
     
     
     $("#getAnalyzeButton").click(function() {
     	// Llamada AJAX para mostrar los resultados de los calculos
-        apagar();
+        apagar("loading");
         var request = {
           "surface"   	: $("#surface").val(),
           "generators"	: $("#generators").val(),
@@ -74,12 +77,39 @@ window.addBindings = function(){
                     showResultsCalculus(data, request);
                 }
             }).always(function() {
-                encender(); 
+                encender("loading"); 
             });
         } else {
-            encender();
+            encender("loading");
             alert("Invalid inputs");
         }
+    });
+    
+    
+    $("#scaleSelect").change(function() {
+    	if ( $("#scaleSelect").val() == 2 ) {
+    		apagar("pop");
+    	} else {
+    		$("#locationButton").hide();
+    	}
+    });
+    
+    $("#locationButton").click(function() {
+    	apagar("pop");
+    });
+    
+    $("#acceptPop").click(function() {
+    	encender("pop");
+    	if ( $("#latitude").val() != "" && $("#longitude").val() != "" ) {
+    		$("#saveScale").html('Concrete Place:<br />' + 
+    				'Lat: ' + $("#latitude").val() + '<br />' + 
+    				'Lon: ' +  $("#longitude").val());
+    		$("#locationButton").show();
+    	} else {
+    		$("#saveScale").html('(National)');
+    		$("#scaleSelect option[value=1]").attr("selected", true);
+    		$("#locationButton").hide();
+    	}
     });
 
 
@@ -93,9 +123,14 @@ window.addBindings = function(){
     $( "#datepickerFrom" ).datepicker();
     $( "#datepickerTo" ).datepicker();
 
-    $(function() {
-        $( "#accordion" ).accordion();
-      });
+    $( "#accordion" ).accordion();
+    if ( $("#pop").length > 0 ) {
+    	$("#locationButton").hide();
+    }
+    
+    $("#accordion").find('h3').filter(':contains(Scale)').hide();
+    $("#accordion").find('h3').filter(':contains(Scale)').next().hide();
+    
 
     $("<option value='1'> January </option>").appendTo("#fromMonth");
     $("<option value='2'> February </option>").appendTo("#fromMonth");
@@ -136,36 +171,59 @@ window.tabs = function (){
         $(this).addClass('active');
         
         // Accordion headers
-        var heads = [
+        var headsMap = [
             $("#accordion").find('h3').filter(':contains(Aggregator)'),
             $("#accordion").find('h3').filter(':contains(Monthly)'),
             $("#accordion").find('h3').filter(':contains(Daily)')
         ];
         
+        var headsGraph = [
+	        $("#accordion").find('h3').filter(':contains(Scale)')
+        ];
+        
         // Botones y leyenda
         if ($("#botonMapa").css("display") == "inline" && $(this).attr('id') == "cambiaGraficas") {
+        	//------------------------------------------------------
         	// GRAPHS TAB
+        	//------------------------------------------------------
         	$("#botonMapa").css({ display: "none" });
         	$("#botonGraficas").css({ display: "inline" });
         	$(".leyenda").css({ display: "none" });
-        	for (i=0; i<heads.length; i++) {
-        		heads[i].hide();
-        		heads[i].next().hide();
+        	for (i=0; i<headsMap.length; i++) {
+        		headsMap[i].hide();
+        		headsMap[i].next().hide();
         	}
+        	for (i=0; i<headsGraph.length; i++) {
+        		headsGraph[i].show();
+        	}
+        	
         	var active = $("#accordion").accordion("option", "active");
         	if (active != 0 && active != 3) {
         		$("#accordion").accordion("option", "active", 0);
         	}
+        	$("#pop").hide();
         	
         } else if ($("#botonMapa").css("display") == "none" && $(this).attr('id') == "cambiaMapa") {
+        	//------------------------------------------------------
         	// MAP TAB
+        	//------------------------------------------------------
         	$("#accordion").find('h3').filter(':contains(Monthly)').show();
         	$("#botonMapa").css({ display: "inline" });
         	$("#botonGraficas").css({ display: "none" });
         	$(".leyenda").css({ display: "block" });
-        	for (i=0; i<heads.length; i++) {
-        		heads[i].show();
+        	for (i=0; i<headsGraph.length; i++) {
+        		headsGraph[i].hide();
+        		headsGraph[i].next().hide();
         	}
+        	for (i=0; i<headsMap.length; i++) {
+        		headsMap[i].show();
+        	}
+        	
+        	var active = $("#accordion").accordion("option", "active");
+        	if (active == 5) {
+        		$("#accordion").accordion("option", "active", 0);
+        	}
+        	$("#pop").hide();
         }
     });
 }
@@ -184,7 +242,7 @@ var currentKmlObject = null;
       currentKmlObject = kmlObject;
       ge.getFeatures().appendChild(kmlObject);
     }
-    encender();
+    encender("loading");
   }
 
   var map_picker; 
@@ -196,6 +254,7 @@ window.pick = function(){
             center: new google.maps.LatLng(40.4445904, -3.697276800000054),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+        console.log(mapOptions);
         map = new google.maps.Map(document.getElementById('map_picker_map'),
                 mapOptions);
         geocoder = new google.maps.Geocoder();
@@ -276,7 +335,7 @@ function showResultsGraphics(response, request) {
 	}
 	
     var chartData = [];
-    var y = request.yearBegin;
+    var y = request.yearFrom;
     
     for (var i=0; i<response.max.length; i++) {
         chartData.push({
@@ -316,12 +375,18 @@ function separadorMiles(number) {
 }
 
 
-// Comprueba si los años son validos
-function checkYears(yearBegin, yearEnd) {
+// Comprueba si los años son validos, si la medida es correcta y la escala
+function checkDataGraphs(request) {
     year_now = (new Date).getFullYear();
-    return ($.isNumeric(yearBegin) && $.isNumeric(yearEnd) &&
-        yearBegin >= 1983 && yearEnd <= year_now &&
-        yearEnd >= yearBegin);
+    return ($.isNumeric(request['yearFrom']) && 
+    	$.isNumeric(request['yearTo']) &&
+    	$.isNumeric(request['scale']) &&
+    	request['yearTo'] >= request['yearFrom'] &&
+    	request['yearFrom'] >= 1983 && request['yearTo'] <= year_now &&
+    	(request['scale'] == 1 || (request['scale'] == 2 && 
+    			$.isNumeric(request['latitude']) &&
+    			$.isNumeric(request['longitude'])))
+       	);
 }
 
 
@@ -384,16 +449,16 @@ function getPageSize() {
 
 
 // Efecto apagar
-function apagar() {
+function apagar(id) {
     $('#Playerholder, #Player, embed, object')
     .css({ 'visibility' : 'visible' });
     
-    /* Show and center loading div */
-    $('#loading').css('display', 'block');
-    var top = Math.max($(window).height() / 2 - $("#loading")[0].offsetHeight / 2, 0);
-    var left = Math.max($(window).width() / 2 - $("#loading")[0].offsetWidth / 2, 0);
-    $("#loading").css('top', top + "px");
-    $("#loading").css('left', left + "px");
+	/* Show and center loading div */
+	$('#' + id).css('display', 'block');
+	var top = Math.max($(window).height() / 2 - $("#" + id)[0].offsetHeight / 2, 0);
+	var left = Math.max($(window).width() / 2 - $("#" + id)[0].offsetWidth / 2, 0);
+	$("#" + id).css('top', top + "px");
+	$("#" + id).css('left', left + "px");
     
     $('body')
     .append('<div id="lightsoff-background"></div>');
@@ -410,12 +475,12 @@ function apagar() {
 }
 
 // Efecto encender
-function encender() {
+function encender(id) {
     $('#lightsoff-background')
     .fadeOut(function() { 
         $('#lightsoff-background').remove(); 
     });
-    $('#loading').css('display', 'none');
+    $('#' + id).css('display', 'none');
     return false;
 }
 
@@ -424,6 +489,7 @@ $(document).ready(function(){
     init();
     $("#saveMeasure").html('(' + $("#measureSelection option:selected").text() + ')');
     $("#saveAggreg").html('(Total)');
+    $("#saveScale").html('(' + $("#scaleSelection option:selected").text() + ')');
 });
 
 // Validate
@@ -441,6 +507,8 @@ $(function(){
   var auxMeasure;
 
   var auxAggreg;
+  
+  var auxScale;
 
   var validate = true;
  
@@ -493,6 +561,11 @@ $(function(){
   $("#measureSelection").change(function() {
     auxMeasure = ($("#measureSelection option:selected").text());
     $("#saveMeasure").html('(' + auxMeasure + ')');
+  });
+  
+  $("#scaleSelection").change(function() {
+	  auxScale = ($("#scaleSelection option:selected").text());
+    $("#saveScale").html('(' + auxScale + ')');
   });
 
   $("input[name='repeat']").change(function() {

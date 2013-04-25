@@ -57,7 +57,7 @@ public class ServletAjaxCalculos extends HttpServlet {
     		(efficiency = isNumeric(strEfficiency)) != -1 &&
     		efficiency >= 0 && efficiency <= 2)
         {
-        	// Redondeamos los datosw
+        	// Redondeamos los datos
         	BigDecimal bd;
         	bd = new BigDecimal(latitude);
         	int rlatitude = bd.intValue();

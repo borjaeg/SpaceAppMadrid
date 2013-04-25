@@ -17,71 +17,76 @@
 	<link rel="stylesheet" href="css/estilogeneral.css">	
 
 
-<!-- GOOGLE EARTH -->
-<script
-	src="http://www.google.com/jsapi?key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw"
-	type="text/javascript"></script>
-<script>
-        google.load("earth", "1");
-        </script>
-<!-- MAIN JS FILE-->
-<script type="text/javascript" src="js/main.js"></script>
+	<!-- GOOGLE EARTH -->
+	<script
+		src="http://www.google.com/jsapi?key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw"
+		type="text/javascript"></script>
+	<script>
+    	google.load("earth", "1");
+    </script>
+    
+    <!-- GOOGLE MAPS -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 
+     
+	<!-- MAIN JS FILE-->
+	<script type="text/javascript" src="js/main.js"></script>
+	
 	<script>
 	//GRAPHICS!!
-var chart;
-
-AmCharts.ready(function () {
-    // SERIAL CHART  
-    chart = new AmCharts.AmSerialChart();
-    //chart.pathToImages = "js/images/";
-    chart.dataProvider = chartData;
-    chart.categoryField = "year";
-    chart.startDuration = 1;
-
-    // AXES
-    // category
-    var categoryAxis = chart.categoryAxis;
-    categoryAxis.gridPosition = "start";
-
-    // value
-    // in case you don't want to change default settings of value axis,
-    // you don't need to create it, as one value axis is created automatically.
-    
-    // GRAPHS
-    // column graph (max)
-    var graph1 = new AmCharts.AmGraph();
-    graph1.type = "column";
-    graph1.title = "Maximum";
-    graph1.valueField = "max";
-    graph1.lineAlpha = 0;
-    graph1.fillAlphas = 1;
-    chart.addGraph(graph1);
-    
-    // column graph (min)
-    var graph2 = new AmCharts.AmGraph();
-    graph2.type = "column";
-    graph2.title = "Minimum";
-    graph2.valueField = "min";
-    graph2.lineAlpha = 0;
-    graph2.fillAlphas = 1;
-    chart.addGraph(graph2);
-
-    // line
-    var graph3 = new AmCharts.AmGraph();
-    graph3.type = "line";
-    graph3.title = "Average";
-    graph3.valueField = "avg";
-    graph3.lineThickness = 2;
-    graph3.bullet = "round";
-    chart.addGraph(graph3);
-
-    // LEGEND                
-    var legend = new AmCharts.AmLegend();
-    chart.addLegend(legend);
-
-    // WRITE
-    //chart.write("chartdiv");
-});
+	var chart;
+	
+	AmCharts.ready(function () {
+	    // SERIAL CHART  
+	    chart = new AmCharts.AmSerialChart();
+	    //chart.pathToImages = "js/images/";
+	    chart.dataProvider = chartData;
+	    chart.categoryField = "year";
+	    chart.startDuration = 1;
+	
+	    // AXES
+	    // category
+	    var categoryAxis = chart.categoryAxis;
+	    categoryAxis.gridPosition = "start";
+	
+	    // value
+	    // in case you don't want to change default settings of value axis,
+	    // you don't need to create it, as one value axis is created automatically.
+	    
+	    // GRAPHS
+	    // column graph (max)
+	    var graph1 = new AmCharts.AmGraph();
+	    graph1.type = "column";
+	    graph1.title = "Maximum";
+	    graph1.valueField = "max";
+	    graph1.lineAlpha = 0;
+	    graph1.fillAlphas = 1;
+	    chart.addGraph(graph1);
+	    
+	    // column graph (min)
+	    var graph2 = new AmCharts.AmGraph();
+	    graph2.type = "column";
+	    graph2.title = "Minimum";
+	    graph2.valueField = "min";
+	    graph2.lineAlpha = 0;
+	    graph2.fillAlphas = 1;
+	    chart.addGraph(graph2);
+	
+	    // line
+	    var graph3 = new AmCharts.AmGraph();
+	    graph3.type = "line";
+	    graph3.title = "Average";
+	    graph3.valueField = "avg";
+	    graph3.lineThickness = 2;
+	    graph3.bullet = "round";
+	    chart.addGraph(graph3);
+	
+	    // LEGEND                
+	    var legend = new AmCharts.AmLegend();
+	    chart.addLegend(legend);
+	
+	    // WRITE
+	    //chart.write("chartdiv");
+	});
 
 	</script>
 </head>
@@ -107,6 +112,7 @@ AmCharts.ready(function () {
 					<li><a href="how.html">How does it work?</a></li>
 					<li><a href="FAQ.html">FAQ</a></li>
 					<li><a href="developer.html">Team</a></li>
+				</ul>
 			</div>
 		</div>
 		<div id="cuerpo" class="row">
@@ -115,7 +121,10 @@ AmCharts.ready(function () {
 
 				<h1>Meteo-BI Form</h1>
 				<div id="accordion">
-					<h3>Yearly <div id="saveYears"></div></h3>
+					<h3>
+						Yearly
+						<div id="saveYears"></div>
+					</h3>
 					<div class="">
 						<div id="yearSelection" class="">
 							<div class="">
@@ -130,7 +139,10 @@ AmCharts.ready(function () {
 							</div>
 						</div>
 					</div>
-					<h3>Monthly <div id="saveMonths"></div></h3>
+					<h3>
+						Monthly
+						<div id="saveMonths"></div>
+					</h3>
 					<div class="">
 						<div id="monthSelection" class="">
 							<div class="">
@@ -147,7 +159,10 @@ AmCharts.ready(function () {
 							</div>
 						</div>
 					</div>
-					<h3>Daily <div id="saveDays"></div></h3>
+					<h3>
+						Daily
+						<div id="saveDays"></div>
+					</h3>
 					<div class="">
 						<div id="daySelection" class="">
 							<h4>From</h4>
@@ -157,7 +172,10 @@ AmCharts.ready(function () {
 						</div>
 					</div>
 
-					<h3>Measure <div id="saveMeasure"></div></h3>
+					<h3>
+						Measure
+						<div id="saveMeasure"></div>
+					</h3>
 					<div class="">
 						<div id="measureSelection" class="">
 							<h4>Select a measure</h4>
@@ -172,9 +190,12 @@ AmCharts.ready(function () {
 						</div>
 					</div>
 
-					<h3>Aggregator <div id="saveAggreg"></div></h3>
+					<h3>
+						Aggregator
+						<div id="saveAggreg"></div>
+					</h3>
 					<div id="slicer" class="">
-						<span id="choice">
+						<div id="choice">
 							<div id="row">
 								<input type="radio" id="totalRadio" name="repeat"
 									checked="checked" value="1" /><label for="totalRadio">Tot</label>
@@ -184,41 +205,89 @@ AmCharts.ready(function () {
 									type="radio" id="minRadio" name="repeat" value="4" /><label
 									for="minRadio">Min</label>
 							</div>
-						</span>
+						</div>
+					</div>
+					<h3>
+						Scale
+						<div id="saveScale"></div>
+					</h3>
+					<div class="">
+						<div id="scaleSelection" class="">
+							<h4>Select a scale</h4>
+							<select id="scaleSelect">
+								<option value="1">National</option>
+								<option value="2">Concrete Place</option>
+							</select> <input id="locationButton" type="button"
+								value="Reset coordinates" style="display: block">
+						</div>
 					</div>
 				</div>
-				
-				
-					<a id="botonMapa" class="boton1">Calculate</a>
-					<a id="botonGraficas" class="boton1" style="display:none">Draw</a>
-				   <img class="leyenda" src="img/leyenda.png" ></img>
-				
+
+				<div id="pop">
+					<h3>Location</h3>
+					<div class="pop-data">
+						<div class="pop-block">
+							<h4>Latitude</h4>
+							<input type="number" step="1" id="latitude">
+
+							<h4>Longitude</h4>
+							<input type="number" step="1" id="longitude">
+
+							<div id="ok-button">
+								<input id="acceptPop" type="button" value="Accept">
+							</div>
+						</div>
+
+						<div class="pop-block" style="border: 0">
+							<div id="map_picker" style="width: 330px;">
+								<div class="address">
+									<input type="text" id="address"
+										placeholder="Location, city, town, village..."></input>
+								</div>
+
+								<input id="get" type="button" value="Get Coordinates">
+
+								<div id="map_picker_map" style="height: 290px; widht: 290px"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<a id="botonMapa" class="boton1">Calculate</a> <a id="botonGraficas"
+					class="boton1" style="display: none">Draw</a> <img class="leyenda"
+					src="img/leyenda.png"></img>
+
 
 
 			</div>
 
-			
+
 			<div id="derecha" class="span8">
-                <h1>Renewable Energy Explorer</h1>
-                <br>
-                <a id="cambiaMapa" class="tab active" href="mapa">Map</a>
-                <a id="cambiaGraficas" class="tab" href="graficas">Graphs</a>
-               
-                <div id="mapa" class="contenido" ><div id = "map3d" style="width: 700px; height: 550px;"></div> </div>
-                
-                <div id="graficas" class="contenido" style="display: none">
-                	<div id="chartdiv">
-                		<div id="chartprev">Select two years (from and to) and a measure and press 'Draw' button.</div>
-                	</div>
-                </div>
-                
-            </div>
-			<div id="loading">
-				<img src="img/loading.gif">
+				<h1>Renewable Energy Explorer</h1>
+				<div id="tabs">
+					<a id="cambiaMapa" class="tab active" href="mapa">Map</a>
+					<a id="cambiaGraficas" class="tab" href="graficas">Graphs</a>
+				</div>
+
+				<div id="mapa" class="contenido">
+					<div id="map3d" style="width: 700px; height: 550px;"></div>
+				</div>
+				
+				<div id="graficas" class="contenido" style="display: none">
+					<div id="chartdiv">
+						<div id="chartprev">
+							Select two years (from and to) a measure and a scale and press 'Draw' button.
+						</div>
+					</div>
+				</div>
+
 			</div>
+		</div>
+	</div>
+	<div id="loading">
+		<img src="img/loading.gif">
+	</div>
 </body>
 </html>
-<script>
-
-</script>
 ​

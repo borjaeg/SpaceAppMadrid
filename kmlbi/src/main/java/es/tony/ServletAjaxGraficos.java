@@ -2,6 +2,7 @@ package es.tony;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -36,23 +37,32 @@ public class ServletAjaxGraficos extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {	
     	String strMeasure	= request.getParameter("measure");
-    	String strYearBegin	= request.getParameter("yearBegin");
-        String strYearEnd	= request.getParameter("yearEnd");
+    	String strYearFrom	= request.getParameter("yearFrom");
+        String strYearTo	= request.getParameter("yearTo");
+        String strScale		= request.getParameter("scale");
+        String strLatitude		= request.getParameter("latitude");
+        String strLongitude		= request.getParameter("longitude");
         
-        int measure, yearBegin, yearEnd;
+        int measure, yearFrom, yearTo, scale;
+        double latitude = 0;
+        double longitude = 0;
         
-        // Comprobamos los datos
-        Calendar calendar = Calendar.getInstance();
-        int year_now = calendar.get(Calendar.YEAR);
-        
-        if (strYearBegin != null && strYearBegin != "" && 
-        		strYearEnd != null && strYearEnd != "" &&
-        		(yearBegin = isNumeric(strYearBegin)) >= MIN_YEAR &&
-        		(yearEnd = isNumeric(strYearEnd)) <= year_now &&
-        		yearEnd >= yearBegin &&
+        // Comprobamos los datos        
+        if (strYearFrom != null && strYearFrom != "" && 
+        		strYearTo != null && strYearTo != "" &&
+        		(yearFrom = isNumeric(strYearFrom)) != -1 &&
+        		(yearTo = isNumeric(strYearTo)) != -1 &&
+        		correctYears(yearFrom, yearTo) &&
+        		
         		strMeasure != null && strMeasure != "" &&
         		(measure = isNumeric(strMeasure)) != -1 &&
-        		measure >=1 && measure <=6) 
+        		measure >=1 && measure <=6 &&
+        		
+        		strScale != null && strScale != "" &&
+        		(scale = isNumeric(strScale)) != -1 &&
+        		(scale == 1 || (scale == 2 && 
+        		(latitude = isDouble(strLatitude)) != -1 &&
+        	    (longitude = isDouble(strLongitude))!= -1)))
         {
         	// Recoge los datos de la BD en una lista
         	Connection connection;
@@ -81,9 +91,17 @@ public class ServletAjaxGraficos extends HttpServlet {
     					m = TypeMeasure.ERROR;
     			}
     			
+				// Redondeamos los datos
+	        	BigDecimal bd;
+	        	bd = new BigDecimal(latitude);
+	        	int rlatitude = bd.intValue();
+	        	bd = new BigDecimal(longitude);
+	        	int rlongitude = bd.intValue();
+    			
     			connection = ConnectionManager.getConnection();
     			List<AggregateResultsVO> list = 
-    					MeteofactDAO.getDataGraphics(connection, m, yearBegin, yearEnd);
+    					MeteofactDAO.getDataGraphics(connection, m, yearFrom, yearTo,
+    							scale, rlatitude, rlongitude);
     			
     			if (list != null) {
     				response.setContentType("text/json");
@@ -94,7 +112,7 @@ public class ServletAjaxGraficos extends HttpServlet {
     				out.print(JSON_converter.listToJSON(list));
     			} else {
     				log.error("Error recogiendo los datos de la BD. " + 
-    						measure + " - " + yearBegin + " - " + yearEnd);
+    						measure + " - " + yearFrom + " - " + yearTo);
         			errorJson(response); return;
     			}
   
@@ -121,6 +139,15 @@ public class ServletAjaxGraficos extends HttpServlet {
 	}
     
     
+    private static double isDouble(String cadena) {
+		try {
+			return Double.parseDouble(cadena);
+		} catch (NumberFormatException nfe) {
+			return -1;
+		}
+	}
+    
+    
     @SuppressWarnings("unchecked")
 	private static void errorJson(HttpServletResponse response) {
     	JSONObject o = new JSONObject();
@@ -134,5 +161,12 @@ public class ServletAjaxGraficos extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    
+    private static boolean correctYears(int yearFrom, int yearTo) {
+        Calendar calendar = Calendar.getInstance();
+        int year_now = calendar.get(Calendar.YEAR);
+        return (yearTo >= yearFrom && yearFrom >= MIN_YEAR && yearTo <= year_now);
     }
 } 

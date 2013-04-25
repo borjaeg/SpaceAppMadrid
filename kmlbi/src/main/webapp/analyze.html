@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
   <head>
+  		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Renewable Energy Explorer</title>
         
@@ -15,8 +17,8 @@
         <link rel="stylesheet" href="css/estilogeneral.css" >
         
 
-        <!-- GOOGLE EARTH -->
-         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <!-- GOOGLE MAPS & EARTH -->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <script src="http://www.google.com/jsapi?key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw" type="text/javascript"></script>
         <script>
         google.load("earth", "1");
@@ -39,12 +41,13 @@
 
             <div id="menu" >
                 <ul class="nav nav-pills">
-                <li ><a href="index.html">Home</a></li>
-                <li class="dropdown" id="menu1">
-                <li class="active" style="width:200px"><a href="analyze.html">Analyze</a></li>
-                <li><a href="how.html">How does it work?</a></li>
-                <li><a href="FAQ.html">FAQ</a></li>
-                <li><a href="developer.html">Team</a></li>
+	                <li ><a href="index.html">Home</a></li>
+	                <li class="dropdown" id="menu1">
+	                <li class="active" style="width:200px"><a href="analyze.html">Analyze</a></li>
+	                <li><a href="how.html">How does it work?</a></li>
+	                <li><a href="FAQ.html">FAQ</a></li>
+	                <li><a href="developer.html">Team</a></li>
+	            </ul>
             </div>
         </div>
         <div id="cuerpo" class="row">
@@ -70,7 +73,7 @@
 
                                 <h4> Address </h4>
                                 <div id="map_picker" style=" width: 330px; ">
-                                    <div class="address"><input type="text" id="address"></input></div>
+                                    <div class="address"><input type="text" id="address" placeholder="Location, city, town, village..."></input></div>
                                     
                                     <div id="get">
                                         Get Coordinates
@@ -107,6 +110,7 @@
         <div id="loading">
 			<img src="img/loading.gif">
 		</div>
+	</div>
   </body>
 </html>
 <script>

@@ -10,42 +10,69 @@ import java.util.List;
 public class MeteofactDAO {
 	
 	public static List<AggregateResultsVO> getDataGraphics(Connection connection, 
-			TypeMeasure measure, int yearBegin, int yearEnd) {
+			TypeMeasure measure, int yearFrom, int yearTo, 
+			int scale, int latitude, int longitude) 
+	{
 		ArrayList<AggregateResultsVO> list = null;
 		
 		try {	
 			/* Create "preparedStatement". */
 			String field = getFieldEquivalent(measure);
 			
-			String queryString = 
+			String queryString;
+			PreparedStatement preparedStatement = null;
+			
+			switch (scale) {
+				case 1: // national
+					queryString = 
 					"SELECT " +
 						"MAX(" + field + ") AS max," +
 						"MIN(" + field + ") AS min," +
 						"AVG(" + field + ") AS avg " +
 					"FROM time_dimension, meteofact " +
-					"WHERE anyo BETWEEN ? AND ? " +
+					"WHERE NOT (" + field + " = 0) " +
+						"AND anyo BETWEEN ? AND ? " +
 						"AND meteofact.idtime = time_dimension.idtime " +
+
 					"GROUP BY anyo " +
 					"ORDER BY anyo";
-			/*String queryString = 
-					"SELECT " +
-						"MAX(" + field + ") as max " +
-						"MIN(" + field + ") as min " +
-						"AVG(" + field + ") as avg " +
-					"FROM meteofact " +
-					"INNER JOIN time_dimension " +
-						"ON time_dimension.idtime = meteofact.idtime " +
-					"WHERE anyo BETWEEN ? AND ? " +
-					"GROUP BY anyo " +
-					"ORDER BY anyo";*/
 
-			PreparedStatement preparedStatement = connection.prepareStatement(queryString,
-							ResultSet.TYPE_SCROLL_INSENSITIVE,
-							ResultSet.CONCUR_READ_ONLY);
-			
-			/* Fill "preparedStatement". */    
-			preparedStatement.setInt(1, yearBegin);
-			preparedStatement.setInt(2, yearEnd);
+					preparedStatement = connection.prepareStatement(queryString,
+									ResultSet.TYPE_SCROLL_INSENSITIVE,
+									ResultSet.CONCUR_READ_ONLY);
+					
+					/* Fill "preparedStatement". */    
+					preparedStatement.setInt(1, yearFrom);
+					preparedStatement.setInt(2, yearTo);
+					break;
+					
+					
+				case 2: // concrete place
+					queryString = 
+					"SELECT " +
+						"MAX(" + field + ") AS max," +
+						"MIN(" + field + ") AS min," +
+						"AVG(" + field + ") AS avg " +
+					"FROM time_dimension, location_dimension, meteofact " +
+					"WHERE NOT (" + field + " = 0) " +
+						"AND anyo BETWEEN ? AND ? " +
+						"AND meteofact.idtime = time_dimension.idtime " +
+						"AND latitude = ? AND longitude = ? " +
+						"AND meteofact.idlocation = location_dimension.idlocation " +
+					"GROUP BY anyo " +
+					"ORDER BY anyo";
+
+					preparedStatement = connection.prepareStatement(queryString,
+									ResultSet.TYPE_SCROLL_INSENSITIVE,
+									ResultSet.CONCUR_READ_ONLY);
+					
+					/* Fill "preparedStatement". */    
+					preparedStatement.setInt(1, yearFrom);
+					preparedStatement.setInt(2, yearTo);
+					preparedStatement.setInt(3, latitude);
+					preparedStatement.setInt(4, longitude);
+					break;
+			}
 			
 			/* Execute query. */
 			ResultSet resultSet = preparedStatement.executeQuery();
