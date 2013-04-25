@@ -127,6 +127,7 @@ window.addBindings = function(){
 
 window.tabs = function (){
     $('.tab').on('click', function(e){
+    	// Panel derecho
         e.preventDefault();
         var id = $(this).attr('href');
         $('.contenido').css('display', 'none');
@@ -134,17 +135,38 @@ window.tabs = function (){
         $('.tab').removeClass('active');
         $(this).addClass('active');
         
+        // Accordion headers
+        var heads = [
+            $("#accordion").find('h3').filter(':contains(Aggregator)'),
+            $("#accordion").find('h3').filter(':contains(Monthly)'),
+            $("#accordion").find('h3').filter(':contains(Daily)')
+        ];
         
+        // Botones y leyenda
         if ($("#botonMapa").css("display") == "inline" && $(this).attr('id') == "cambiaGraficas") {
+        	// GRAPHS TAB
         	$("#botonMapa").css({ display: "none" });
         	$("#botonGraficas").css({ display: "inline" });
         	$(".leyenda").css({ display: "none" });
+        	for (i=0; i<heads.length; i++) {
+        		heads[i].hide();
+        		heads[i].next().hide();
+        	}
+        	var active = $("#accordion").accordion("option", "active");
+        	if (active != 0 && active != 3) {
+        		$("#accordion").accordion("option", "active", 0);
+        	}
+        	
         } else if ($("#botonMapa").css("display") == "none" && $(this).attr('id') == "cambiaMapa") {
+        	// MAP TAB
+        	$("#accordion").find('h3').filter(':contains(Monthly)').show();
         	$("#botonMapa").css({ display: "inline" });
         	$("#botonGraficas").css({ display: "none" });
         	$(".leyenda").css({ display: "block" });
+        	for (i=0; i<heads.length; i++) {
+        		heads[i].show();
+        	}
         }
-        
     });
 }
 
@@ -191,9 +213,6 @@ window.pick = function(){
                
             });
     }
-   
-       
-   
 }
 
   
