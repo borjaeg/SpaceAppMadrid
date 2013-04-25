@@ -94,9 +94,11 @@ window.addBindings = function(){
     	}
     });
     
+    
     $("#locationButton").click(function() {
     	apagar("pop");
     });
+    
     
     $("#acceptPop").click(function() {
     	encender("pop");
@@ -109,6 +111,23 @@ window.addBindings = function(){
     		$("#saveScale").html('(National)');
     		$("#scaleSelect option[value=1]").attr("selected", true);
     		$("#locationButton").hide();
+    	}
+    });
+    
+    
+    $("#selectCoordinates").click(function() {
+    	apagar("pop");
+    });
+    
+    
+    $("#acceptCoordinates").click(function() {
+    	encender("pop");
+    	if ( $("#latitude").val() != "" && $("#longitude").val() != "" ) {
+    		$("#lat-resume").text($("#latitude").val());
+    		$("#lon-resume").text($("#longitude").val());
+    	} else {
+    		$("#lat-resume").text("");
+    		$("#lon-resume").text("");
     	}
     });
 
@@ -254,7 +273,6 @@ window.pick = function(){
             center: new google.maps.LatLng(40.4445904, -3.697276800000054),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        console.log(mapOptions);
         map = new google.maps.Map(document.getElementById('map_picker_map'),
                 mapOptions);
         geocoder = new google.maps.Geocoder();

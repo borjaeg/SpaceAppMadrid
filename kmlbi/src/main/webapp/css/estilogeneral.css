@@ -411,6 +411,12 @@ margin-bottom: 10px;
     padding-left: 30px;
 }
 
+#resumeCoordinates {
+	margin-top: 10px;
+	margin-left: 20px;
+	color: #888;
+}
+
 /* Efectos */
 #lightsoff-background  {
 	height: 100%;

@@ -53,46 +53,71 @@
         <div id="cuerpo" class="row">
 
             <div id="izquierda" class="span4">
-              
-               <h1> Analyze </h1>
-                <div id="accordion">
 
-                       <h3> Energy generated </h3>
-                            <div class = "">
-                               <h4> Solar Surface (m2)</h4>
-                               <input type="number" step="1" id="surface">
+				<h1>Analyze</h1>
+				<div id="accordion">
+					<h3>Energy generated</h3>
+					<div class="">
+						<h4>Solar Surface (m2)</h4>
+						<input type="number" step="1" id="surface">
 
-                                <h4>Number of generators</h4>
-                               <input type="number" step="1" id="generators">
-                                  <h4>Installation level</h4>
-                               <select id="efficiency">
-                                <option value="0">High cost</option>
-                                <option value="1">Medium cost</option>
-                                <option value="2">Low cost</option>
-                                </select>
+						<h4>Number of generators</h4>
+						<input type="number" step="1" id="generators">
 
-                                <h4> Address </h4>
-                                <div id="map_picker" style=" width: 330px; ">
-                                    <div class="address"><input type="text" id="address" placeholder="Location, city, town, village..."></input></div>
-                                    
-                                    <div id="get">
-                                        Get Coordinates
-                                    </div>
-                                    
-                                    <div id="map_picker_map" style="height: 290px; widht:290px"></div>
-                                </div>
-                                
-                                 <h4>Latitude</h4>
-                               <input type="number" step="1" id="latitude">
+						<h4>Installation level</h4>
+						<select id="efficiency">
+							<option value="0">High cost</option>
+							<option value="1">Medium cost</option>
+							<option value="2">Low cost</option>
+						</select>
 
-                                 <h4>Longitude</h4>
-                               <input type="number" step="1" id="longitude">  
-                        </div>           
-                </div>
-                <br>
+						<h4>Location</h4>
+						<input id="selectCoordinates" type="button" class="btn btn-info" value="Select coordinates">
+						<div id="resumeCoordinates">
+							<div>
+								Latitude: <span id="lat-resume"></span>
+							</div>
+							<div>
+								Longitude: <span id="lon-resume"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div id="pop">
+					<h3>Location</h3>
+					<div class="pop-data">
+						<div class="pop-block">
+							<h4>Latitude</h4>
+							<input type="number" step="1" id="latitude">
+
+							<h4>Longitude</h4>
+							<input type="number" step="1" id="longitude">
+
+							<div id="ok-button">
+								<input id="acceptCoordinates" type="button" value="Accept">
+							</div>
+						</div>
+
+						<div class="pop-block" style="border: 0">
+							<div id="map_picker" style="width: 330px;">
+								<div class="address">
+									<input type="text" id="address"
+										placeholder="Location, city, town, village..."></input>
+								</div>
+
+								<input id="get" type="button" value="Get Coordinates">
+
+								<div id="map_picker_map" style="height: 290px; widht: 290px"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
                 <p><a id = "getAnalyzeButton" class="boton1">Calculate</a></p>
                 <br>
-                <br>    
             </div>
             
             <div id="derecha" class="span8">
