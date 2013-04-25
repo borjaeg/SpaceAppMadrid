@@ -416,9 +416,10 @@ $(function(){
   var auxFromMonth;
   var auxToMonth;
 
+  
   var auxFromDay;
   var auxToDay;
-  var fromToYear;
+
   var auxMeasure;
 
   var auxAggreg;
@@ -427,10 +428,9 @@ $(function(){
  
   
   var setAuxFromToYears = function(){
-   auxFromYear = ( $("#fromYear option:selected").text().length == 0) ? 0 :  parseInt($("#fromYear option:selected").text());    
-   auxToYear = ( $("#toYear option:selected").text().length == 0) ? 0 :  parseInt($("#toYear option:selected").text());    
-   fromToYear = "(" +auxFromYear+ "-" + auxToYear + ")";
-    $("#saveYears").html(fromToYear);
+   auxFromYear = ( $("#fromYear option:selected").text().length == 0) ? 'Select one'  :  parseInt($("#fromYear option:selected").text());    
+   auxToYear = ( $("#toYear option:selected").text().length == 0) ? 'Select one' :  parseInt($("#toYear option:selected").text());    
+   $("#saveYears").html("(" +auxFromYear+ "-" + auxToYear + ")");
     validar(auxFromYear, auxToYear, 1);
   }
   $("#fromYear").change(function() {
@@ -439,16 +439,19 @@ $(function(){
   $("#toYear").change(function() {
     setAuxFromToYears();  
   });
-
-  $("#fromMonth").change(function() {
-    auxFromMonth = ($("#fromMonth option:selected").text());
+    
+  var setAuxFromToMonths = function(){
+    auxFromMonth = ( $("#fromMonth option:selected").text().length == 0) ? 'Select one' : $("#fromMonth option:selected").text();    
+    auxToMonth = ( $("#toMonth option:selected").text().length == 0) ? 'Select one' : $("#toMonth option:selected").text();    
+    
     $("#saveMonths").html("(" + auxFromMonth + "-" + auxToMonth + ")");
     validar($("#fromMonth option:selected").val(), $("#toMonth option:selected").val(), 2);
+  }
+  $("#fromMonth").change(function() {
+    setAuxFromToMonths();    
   });
   $("#toMonth").change(function() {
-    auxToMonth = ($("#toMonth option:selected").text());
-    $("#saveMonths").html("(" + auxFromMonth + "-" + auxToMonth + ")");
-    validar($("#fromMonth option:selected").val(), $("#toMonth option:selected").val(), 2);
+   setAuxFromToMonths();  
   });
 
   $("#datepickerFrom").change(function() {
