@@ -145,6 +145,7 @@ window.addBindings = function(){
     $( "#accordion" ).accordion();
     if ( $("#pop").length > 0 ) {
     	$("#locationButton").hide();
+    	$("#pop").css("visibility", "hidden");
     }
     
     $("#accordion").find('h3').filter(':contains(Scale)').hide();
@@ -485,6 +486,7 @@ function apagar(id) {
     
 	/* Show and center loading div */
 	$('#' + id).css('display', 'block');
+	$('#' + id).css('visibility', 'visible');
 	var top = Math.max($(window).height() / 2 - $("#" + id)[0].offsetHeight / 2, 0);
 	var left = Math.max($(window).width() / 2 - $("#" + id)[0].offsetWidth / 2, 0);
 	$("#" + id).css('top', top + "px");
