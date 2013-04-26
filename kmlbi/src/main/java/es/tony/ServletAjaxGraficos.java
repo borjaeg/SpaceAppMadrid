@@ -3,10 +3,7 @@ package es.tony;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
-import es.tony.persistence.AggregateResultsVO;
-import es.tony.persistence.ConnectionManager;
-import es.tony.persistence.JSON_converter;
-import es.tony.persistence.MeteofactDAO;
+import es.tony.modelView.Facade;
+import es.tony.modelView.GraphicRequest;
 import es.tony.persistence.TypeMeasure;
 
 
@@ -65,63 +60,61 @@ public class ServletAjaxGraficos extends HttpServlet {
         	    (longitude = isDouble(strLongitude))!= -1)))
         {
         	// Recoge los datos de la BD en una lista
-        	Connection connection;
-    		try {
-    			TypeMeasure m;
-    			switch (measure) {
-    				case 1:
-    					m = TypeMeasure.SOLAR_RADIATION;
-    					break;
-    				case 2:
-    					m = TypeMeasure.DEW_FROST;
-    					break;
-    				case 3:
-    					m = TypeMeasure.RELATIVE_HUMIDITY;
-    					break;
-    				case 4:
-    					m = TypeMeasure.WIND_SPEED;
-    					break;
-    				case 5:
-    					m = TypeMeasure.PRECIPITATION;
-    					break;
-    				case 6:
-    					m = TypeMeasure.TEMPERATURE;
-    					break;
-    				default:
-    					m = TypeMeasure.ERROR;
-    			}
-    			
-				// Redondeamos los datos
-	        	BigDecimal bd;
-	        	bd = new BigDecimal(latitude);
-	        	int rlatitude = bd.intValue();
-	        	bd = new BigDecimal(longitude);
-	        	int rlongitude = bd.intValue();
-    			
-    			connection = ConnectionManager.getConnection();
-    			List<AggregateResultsVO> list = 
-    					MeteofactDAO.getDataGraphics(connection, m, yearFrom, yearTo,
-    							scale, rlatitude, rlongitude);
-    			
-    			if (list != null) {
-    				response.setContentType("text/json");
-    				PrintWriter out = response.getWriter();
-                
-    				// Devolvemos los resultados de la lista de 
-    				//   AggregateResultsVO como objectos JSON
-    				out.print(JSON_converter.listToJSON(list));
-    			} else {
-    				log.error("Error recogiendo los datos de la BD. " + 
-    						measure + " - " + yearFrom + " - " + yearTo);
-        			errorJson(response); return;
-    			}
-  
-    		} catch (SQLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    			log.error("Error AJAX. Acceso a la BD");
-    			errorJson(response); return;
-    		}
+			TypeMeasure m;
+			switch (measure) {
+				case 1:
+					m = TypeMeasure.SOLAR_RADIATION;
+					break;
+				case 2:
+					m = TypeMeasure.DEW_FROST;
+					break;
+				case 3:
+					m = TypeMeasure.RELATIVE_HUMIDITY;
+					break;
+				case 4:
+					m = TypeMeasure.WIND_SPEED;
+					break;
+				case 5:
+					m = TypeMeasure.PRECIPITATION;
+					break;
+				case 6:
+					m = TypeMeasure.TEMPERATURE;
+					break;
+				default:
+					m = TypeMeasure.ERROR;
+			}
+			
+			// Redondeamos los datos
+        	BigDecimal bd;
+        	bd = new BigDecimal(latitude);
+        	int rlatitude = bd.intValue();
+        	bd = new BigDecimal(longitude);
+        	int rlongitude = bd.intValue();
+        	
+        	// Objeto request
+        	GraphicRequest req = new GraphicRequest(
+        			m,
+        			yearFrom,
+        			yearTo,
+        			scale,
+        			rlatitude,
+        			rlongitude
+        	);
+			
+        	Facade facade = new Facade();
+        	
+        	JSONObject o = facade.processGraphicRequest(req);
+        	
+        	if (o != null) {
+        		response.setContentType("text/json");
+				PrintWriter out = response.getWriter();
+				
+				// Devolvemos los resultados de la lista de 
+				//   AggregateResultsVO como objectos JSON
+				out.print(o);
+        	} else {
+        		errorJson(response); return;
+        	}
         	
         } else {
         	log.error("Error AJAX. Tipos invalidos");

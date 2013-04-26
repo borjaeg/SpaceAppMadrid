@@ -4,18 +4,14 @@ package es.tony;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.tony.dataProcesing.Calculus;
-import es.tony.persistence.ConnectionManager;
-import es.tony.persistence.MeteofactDAO;
-import es.tony.persistence.TypeMeasure;
+import es.tony.modelView.CalculusRequest;
+import es.tony.modelView.Facade;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -33,7 +29,6 @@ public class ServletAjaxCalculos extends HttpServlet {
 		super();
 	} 
 	
-    @SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {	
     	String strSurface		= request.getParameter("surface");
@@ -65,96 +60,29 @@ public class ServletAjaxCalculos extends HttpServlet {
         	int rlongitude = bd.intValue();
         	
         	// Recoge los datos de la BD en un objeto MeteofactVO
-        	Connection connection;
-    		try {
-    			connection = ConnectionManager.getConnection();
-    			
-    			double solarRadiation, windSpeed;
-
-    			solarRadiation = MeteofactDAO.getMeasure(connection, TypeMeasure.SOLAR_RADIATION, rlatitude, rlongitude);
-    			windSpeed = MeteofactDAO.getMeasure(connection, TypeMeasure.WIND_SPEED, rlatitude, rlongitude);
-                
-    			
-    			double energyGeneratedSolar, energyGeneratedWind, energyGeneratedTotal;
-    			double homeEquivalentSolar, homeEquivalentWind, homeEquivalentTotal;
-    			double monetaryEquivalentSolar, monetaryEquivalentWind, monetaryEquivalentTotal;
-    			double installationCosSolar, installationCosWind, installationCosTotal;
-    			int timeRecoverSolar, timeRecoverWind, timeRecoverTotal;
-
-    			
-    			// Realizamos los calculos
-    			
-    			// Solar
-    			energyGeneratedSolar = 
-    					Calculus.energyGeneratedSolar(surface, solarRadiation, efficiency);
-    			homeEquivalentSolar = 
-    					Calculus.homeEquivalent(energyGeneratedSolar);
-    			monetaryEquivalentSolar = 
-    					Calculus.monetaryEquivalent(energyGeneratedSolar);
-    			installationCosSolar = 
-    					Calculus.facilitySolarCost(surface, efficiency);
-    			timeRecoverSolar = 
-    					Calculus.timeToRecoverTheInversion(installationCosSolar, monetaryEquivalentSolar);
-    			
-    			// Wind
-    			energyGeneratedWind = 
-    					Calculus.energyGeneratedWind(windSpeed, generators, efficiency);
-    			homeEquivalentWind = 
-    					Calculus.homeEquivalent(energyGeneratedWind);
-    			monetaryEquivalentWind = 
-    					Calculus.monetaryEquivalent(energyGeneratedWind);
-    			installationCosWind = 
-    					Calculus.facilityWindCost(generators, efficiency);
-    			timeRecoverWind = 
-    					Calculus.timeToRecoverTheInversion(installationCosWind, monetaryEquivalentWind);
-    			
-    			// Total
-    			energyGeneratedTotal = 
-    					energyGeneratedSolar + energyGeneratedWind;
-    			homeEquivalentTotal = 
-    					Calculus.homeEquivalent(energyGeneratedTotal);
-    			monetaryEquivalentTotal = 
-    					Calculus.monetaryEquivalent(energyGeneratedTotal);
-    			installationCosTotal = 
-    					installationCosSolar + installationCosWind;
-    			timeRecoverTotal = 
-    					Calculus.timeToRecoverTheInversion(installationCosTotal, monetaryEquivalentTotal);
-    			
-
-    			
-                // Creamos el objeto JSON con los resultados
-    			JSONObject o = new JSONObject();
-    	    	
+        	
+        	// Objeto request
+        	CalculusRequest req = new CalculusRequest(
+        			surface,
+        			generators,
+        			efficiency,
+        			rlatitude,
+        			rlongitude
+        	);
+        	
+        	Facade facade = new Facade();
+        	
+        	JSONObject o = facade.processCalculusRequest(req);
+        	
+        	if (o != null) {
     	    	response.setContentType("text/json");
     	        PrintWriter out = response.getWriter();
-    	        
-    	        o.put("energyGeneratedSolar", energyGeneratedSolar/1000);	// /1000 MWh
-    	        o.put("homeEquivalentSolar", homeEquivalentSolar);
-    	        o.put("monetaryEquivalentSolar", monetaryEquivalentSolar);
-    	        o.put("installationCosSolar", installationCosSolar);
-    	        o.put("timeRecoverSolar", timeRecoverSolar);
-    	        
-    	        o.put("energyGeneratedWind", energyGeneratedWind/1000);		// /1000 MWh
-    	        o.put("homeEquivalentWind", homeEquivalentWind);
-    	        o.put("monetaryEquivalentWind", monetaryEquivalentWind);
-    	        o.put("installationCosWind", installationCosWind);
-    	        o.put("timeRecoverWind", timeRecoverWind);
-    	        
-    	        o.put("energyGeneratedTotal", energyGeneratedTotal/1000);	// /1000 MWh
-    	        o.put("homeEquivalentTotal", homeEquivalentTotal);
-    	        o.put("monetaryEquivalentTotal", monetaryEquivalentTotal);
-    	        o.put("installationCosTotal", installationCosTotal);
-    	        o.put("timeRecoverTotal", timeRecoverTotal);
-    	        
     	        out.print(o);
-  
-    		} catch (SQLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    			log.error("Error AJAX. Acceso a la BD");
+        	} else {
+        		log.error("Error AJAX. Acceso a la BD");
     			errorJson(response); return;
-    		}
-        	
+        	}
+
         } else {
         	log.error("Error AJAX. Tipos invalidos");
         	errorJson(response); return;
