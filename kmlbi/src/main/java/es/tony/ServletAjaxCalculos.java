@@ -79,7 +79,6 @@ public class ServletAjaxCalculos extends HttpServlet {
     	        PrintWriter out = response.getWriter();
     	        out.print(o);
         	} else {
-        		log.error("Error AJAX. Acceso a la BD");
     			errorJson(response); return;
         	}
 
