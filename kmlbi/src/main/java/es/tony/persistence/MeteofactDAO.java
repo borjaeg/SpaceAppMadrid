@@ -30,8 +30,7 @@ public class MeteofactDAO {
 						"MIN(" + field + ") AS min," +
 						"AVG(" + field + ") AS avg " +
 					"FROM time_dimension, meteofact " +
-					"WHERE NOT (" + field + " = 0) " +
-						"AND anyo BETWEEN ? AND ? " +
+					"WHERE anyo BETWEEN ? AND ? " +
 						"AND meteofact.idtime = time_dimension.idtime " +
 
 					"GROUP BY anyo " +
@@ -54,8 +53,7 @@ public class MeteofactDAO {
 						"MIN(" + field + ") AS min," +
 						"AVG(" + field + ") AS avg " +
 					"FROM time_dimension, location_dimension, meteofact " +
-					"WHERE NOT (" + field + " = 0) " +
-						"AND anyo BETWEEN ? AND ? " +
+					"WHERE anyo BETWEEN ? AND ? " +
 						"AND meteofact.idtime = time_dimension.idtime " +
 						"AND latitude = ? AND longitude = ? " +
 						"AND meteofact.idlocation = location_dimension.idlocation " +
