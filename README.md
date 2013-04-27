@@ -57,31 +57,6 @@ Dependencies
  * [ch.hsr.geohash](https://github.com/kungfoo/geohash-java)
 
 
-Resources
----------
- * [GitHub MAIN Repo](https://github.com/borja3790/SpaceAppMadrid)
- * [GitHub Repo FrontEnd Code](https://github.com/rafinskipg/Energy2PeopleFront)
- * [FrontEnd Test Page](http://appsets.com/index.html)
-
-
-Project Information
--------------------
-
-### License
-[Creative Commons BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/)
-
-
-### Team
- * [Alberto Alcolea Ursua](https://github.com/albertoalcolea)
- * [Borja Espejo Garcia](https://github.com/borja3790)
- * [Rafael Pedrola](https://github.com/rafinskipg)
- * [Albert Zurita](https://github.com/albertzurita)
- * [Fernando Martin](https://github.com/fmartinp)
- * Enrique Perez Alonso
- * Pau Contreras de Luna
- * [Daniel Sanchez Seijo](https://github.com/Daniseijo)
- * [David Portilla Abellan](https://github.com/davidportilla)
-
 Rest API (json)
 -------------------
 ### Aggregations ({aggr}):
@@ -113,3 +88,29 @@ Rest API (json)
 	3. Total Precipitation between 02.05.1995 and 07.22.2006 (day by day)
 	- http://abejamaya.cps.unizar.es/kmlbi/rest/v1/json/tot/pre/02.05.1995/07.22.2006
 
+
+Resources
+---------
+ * [GitHub MAIN Repo](https://github.com/borja3790/SpaceAppMadrid)
+ * [GitHub Repo FrontEnd Code](https://github.com/rafinskipg/Energy2PeopleFront)
+ * [Website (developing)](http://abejamaya.cps.unizar.es:8080/kmlbi)
+ * [FrontEnd Test Page](http://appsets.com/index.html)
+
+
+Project Information
+-------------------
+
+### License
+[Creative Commons BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/)
+
+
+### Team
+ * [Alberto Alcolea Ursua](https://github.com/albertoalcolea)
+ * [Borja Espejo Garcia](https://github.com/borja3790)
+ * [Rafael Pedrola](https://github.com/rafinskipg)
+ * [Albert Zurita](https://github.com/albertzurita)
+ * [Fernando Martin](https://github.com/fmartinp)
+ * Enrique Perez Alonso
+ * Pau Contreras de Luna
+ * [Daniel Sanchez Seijo](https://github.com/Daniseijo)
+ * [David Portilla Abellan](https://github.com/davidportilla)
