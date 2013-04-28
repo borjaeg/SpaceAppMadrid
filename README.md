@@ -34,6 +34,7 @@ Dependencies
 ------------
 
 ### Production environment
+ * [Java JRE 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)/[OpenJDK 7 JRE](http://openjdk.java.net/)
  * [Apache Tomcat 1.6](http://tomcat.apache.org/)
  * [PostgreSQL 9.1](http://www.postgresql.org/)
 
@@ -44,6 +45,7 @@ Dependencies
  * [Amcharts 2.10.0](http://www.amcharts.com/)
 
 ### BackEnd dependencies
+ * [Java JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)[OpenJDK 7](http://openjdk.java.net/)
  * [Apache Maven 3.0.5](http://maven.apache.org/)
  * [JUnit 4.11](http://junit.org/)
  * [Apache Java Servlet 2.4](http://tomcat.apache.org/)

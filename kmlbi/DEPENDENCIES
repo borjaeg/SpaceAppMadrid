@@ -3,6 +3,7 @@ DEPENDENCIES
 
 ### Production environment
 
+  - Java JRE 7 / OpenJDK 7 JRE
   - Apache Tomcat 1.6
   - PostgreSQL 9.1
 
@@ -17,6 +18,7 @@ DEPENDENCIES
 
 ### BackEnd dependencies
 
+  - Java JDK 7 / OpenJDK 7 
   - Apache Maven 3.0.5
   - JUnit 4.11
   - Java Servlet 2.4
