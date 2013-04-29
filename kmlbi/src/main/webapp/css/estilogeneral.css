@@ -117,6 +117,7 @@ body {
 	vertical-align: bottom;
 	color: #FFF;
 	margin-bottom: 4px;
+	height: 150px;
 }
 
 #derecha .persona img {
@@ -126,8 +127,9 @@ body {
 	margin-bottom: 4px;
 }
 
-#derecha .persona .nombre,#derecha .persona .mail,#derecha .persona .social
-	{
+#derecha .persona .nombre,
+#derecha .persona .mail,
+#derecha .persona .social {
 	display: block;
 	width: 260px;
 }
@@ -148,6 +150,7 @@ body {
 
 #derecha .persona .social a:hover {
 	opacity: 1;
+
 	/* IE 8 */
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
@@ -165,13 +168,14 @@ body {
 	margin-left: 4px;
 }
 
-#derecha .persona .mail,#derecha .persona .social,#derecha .persona .social a
-	{
+#derecha .persona .mail,
+#derecha .persona .social,
+#derecha .persona .social a {
 	color: #AAA;
 	text-shadow: 0px 0px 1px #888686;
 }
 
-#derecha ul {
+#derecha #deveolpers {
 	-moz-column-count: 2;
 	-webkit-column-count: 2;
 	column-count: 2;
