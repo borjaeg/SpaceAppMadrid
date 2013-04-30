@@ -3,7 +3,7 @@ Energy2People
 
 This project is solving the Renewable Energy Explorer challenge for the 2013 NASA International Space Apps Challenge.
 
-Interactive Data visualization client for the selection of wealthy renewable resources areas. The application allows to the user the estimation of potential amount of energy in a specific location.
+Interactive Data visualization and extraction system for the selection of wealthy renewable resources areas. The application allows to the user the estimation of potential amount of energy in a specific location.
 
 
 Renewable Energy FAQ
