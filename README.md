@@ -57,6 +57,9 @@ Dependencies
  * [Json-simple 1.1](https://code.google.com/p/json-simple/)
  * [htmlunit 2.12](http://htmlunit.sourceforge.net/)
  * [ch.hsr.geohash](https://github.com/kungfoo/geohash-java)
+ * [jersey-server](https://jersey.java.net/)
+ * [jersey-json](https://jersey.java.net/)
+ * [commons-io](http://commons.apache.org/proper/commons-io/)
 
 
 Rest API (json)
