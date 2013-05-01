@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
 import es.tony.businessLogic.KmlCreator;
@@ -43,6 +44,14 @@ public class kmlServletNasa extends HttpServlet {
 			response.reset();
 			MdxProcess.maxValue = -500;
 			MdxProcess.minValue = 500;
+			log.info("REQUEST");
+			log.info("q: " + request.getParameter("q"));
+			log.info("fYear: " + request.getParameter("fYear"));
+			log.info("tYear: " + request.getParameter("tYear"));
+			log.info("fMonth: " + request.getParameter("fMonth"));
+			log.info("tMonth: " + request.getParameter("tMonth"));
+			log.info("fDay: " + request.getParameter("fDay"));
+			log.info("tDay: " + request.getParameter("tDay"));
 
 			switch (Integer.parseInt(request.getParameter("q"))) {
 			case 1:// Solar
@@ -63,55 +72,56 @@ public class kmlServletNasa extends HttpServlet {
 			case 6:// Precipitation Average
 				requestVal.setOperation("Temperature");
 				break;
-				
+
 			default:
-			
+
 			}
-			if (!request.getParameter("fYear").equals("-----"))
+			if (!request.getParameter("fYear").equals(""))
 				requestVal.setAnyoFrom(Integer.parseInt(request
 						.getParameter("fYear")));
 			else {
-				
+
 				requestVal.setAnyoFrom(0);
 			}
 
-			if (!request.getParameter("tYear").equals("-----")) {
-				
+			if (!request.getParameter("tYear").equals("")) {
+
 				requestVal.setAnyoTo(Integer.parseInt(request
 						.getParameter("tYear")));
 			} else {
-				
+
 				requestVal.setAnyoTo(0);
 			}
 
-			if (!request.getParameter("fMonth").equals("0"))
+			if (!request.getParameter("fMonth").equals("")
+					&& !request.getParameter("fMonth").equals("0"))
 				requestVal.setMothFrom(Integer.parseInt(request
 						.getParameter("fMonth")));
 			else {
-				
+
 				requestVal.setMothFrom(0);
 			}
 
-			if (!request.getParameter("tMonth").equals("0"))
+			if (!request.getParameter("tMonth").equals("")
+					&& !request.getParameter("tMonth").equals("0"))
 				requestVal.setMothTo(Integer.parseInt(request
 						.getParameter("tMonth")));
 			else {
-				
 				requestVal.setMothTo(0);
-				
+
 			}
 
 			if (!request.getParameter("fDay").equals(""))
 				requestVal.setFechaFrom(request.getParameter("fDay"));
 			else {
-				
+
 				requestVal.setFechaFrom("");
 			}
 
 			if (!request.getParameter("tDay").equals(""))
 				requestVal.setFechaTo(request.getParameter("tDay"));
 			else {
-				
+
 				requestVal.setFechaTo("");
 			}
 			switch (Integer.parseInt(request.getParameter("aggr"))) {
@@ -163,15 +173,17 @@ public class kmlServletNasa extends HttpServlet {
 				// Seteamos el tamaño de la respuesta
 				resp.setContentLength(tam);
 
-				bos = new BufferedOutputStream(outstr);
+//				bos = new BufferedOutputStream(outstr);
 
 				// Bucle para leer de un fichero y escribir en el otro.
-				byte[] array = new byte[1000];
-				int leidos = bis.read(array);
-				while (leidos > 0) {
-					bos.write(array, 0, leidos);
-					leidos = bis.read(array);
-				}
+//				byte[] array = new byte[tam];
+//				int leidos = bis.read(array);
+//				while (leidos > 0) {
+					log.info("Still reading file");
+//					bos.write(array, 0, leidos);
+//					leidos = bis.read(array);
+					IOUtils.copy(new FileInputStream(kmlFile), outstr);
+//				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -185,6 +197,7 @@ public class kmlServletNasa extends HttpServlet {
 					bos.close();
 				}
 				if (outstr != null) {
+					log.info("Sending file");
 					outstr.flush();
 					outstr.close();
 				}

@@ -30,3 +30,6 @@ DEPENDENCIES
   - Json-simple 1.1
   - htmlunit
   - ch.hsr.geohash
+  - jersey-server
+  - jersey-json
+  - commons-io
